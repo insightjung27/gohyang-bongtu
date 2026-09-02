@@ -1,0 +1,99 @@
+/* tokens.css — 고향봉투 · generate_tokens.py 자동생성(수기수정 금지, 씨앗값만 바꿔 재생성) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root {
+  --font-sans: Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --color-seed: #17324D;
+  --color-accent: #C8623B;
+  --color-accentStrong: #BA5934;
+  --color-bg: #F6F2EB;
+  --color-surface: #FFFFFF;
+  --color-ink: #17211C;
+  --color-body: #193652;
+  --color-muted: #2B5E91;
+  --color-accentText: #C8623B;
+  --color-onAccent: #FFFFFF;
+  --color-border: #D8E6F3;
+  --seed-50: #EFF5FA;
+  --seed-100: #D8E6F3;
+  --seed-200: #B0CCE8;
+  --seed-300: #81ADD9;
+  --seed-400: #4E8CCA;
+  --seed-500: #3573B1;
+  --seed-600: #2B5E91;
+  --seed-700: #224A72;
+  --seed-800: #193652;
+  --seed-900: #102437;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --text-display-size: clamp(2.362rem, 1.850rem + 2.178vw, 3.812rem);
+  --text-display-weight: 800;
+  --text-display-lh: 1.08;
+  --text-display-ls: -0.02em;
+  --text-h1-size: 3.05rem;
+  --text-h1-weight: 700;
+  --text-h1-lh: 1.15;
+  --text-h1-ls: -0.015em;
+  --text-h2-size: 1.95rem;
+  --text-h2-weight: 700;
+  --text-h2-lh: 1.25;
+  --text-h2-ls: -0.01em;
+  --text-h3-size: 1.562rem;
+  --text-h3-weight: 600;
+  --text-h3-lh: 1.35;
+  --text-h3-ls: -0.005em;
+  --text-eyebrow-size: 0.8rem;
+  --text-eyebrow-weight: 600;
+  --text-eyebrow-lh: 1.4;
+  --text-eyebrow-ls: 0.18em;
+  --text-lead-size: 1.25rem;
+  --text-lead-weight: 400;
+  --text-lead-lh: 1.6;
+  --text-lead-ls: 0;
+  --text-body-size: 1.0rem;
+  --text-body-weight: 400;
+  --text-body-lh: 1.75;
+  --text-body-ls: 0;
+  --text-caption-size: 0.8rem;
+  --text-caption-weight: 400;
+  --text-caption-lh: 1.5;
+  --text-caption-ls: 0.01em;
+  --text-button-size: 1.0rem;
+  --text-button-weight: 600;
+  --text-button-lh: 1;
+  --text-button-ls: 0.01em;
+}
+
+/* 최소 리셋 + 본문 기본 */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-sans);background:var(--color-bg);color:var(--color-body);font-size:var(--text-body-size);line-height:var(--text-body-lh);font-weight:var(--text-body-weight);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+
+/* 역할별 타이포 유틸 — 컴포넌트는 인라인 폰트크기 금지, 이 클래스만 사용 */
+.t-display{font-size:var(--text-display-size);font-weight:var(--text-display-weight);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);color:#17211C;}
+.t-h1{font-size:var(--text-h1-size);font-weight:var(--text-h1-weight);line-height:var(--text-h1-lh);letter-spacing:var(--text-h1-ls);color:#17211C;}
+.t-h2{font-size:var(--text-h2-size);font-weight:var(--text-h2-weight);line-height:var(--text-h2-lh);letter-spacing:var(--text-h2-ls);color:#17211C;}
+.t-h3{font-size:var(--text-h3-size);font-weight:var(--text-h3-weight);line-height:var(--text-h3-lh);letter-spacing:var(--text-h3-ls);color:#17211C;}
+.t-eyebrow{font-size:var(--text-eyebrow-size);font-weight:var(--text-eyebrow-weight);line-height:var(--text-eyebrow-lh);letter-spacing:var(--text-eyebrow-ls);color:#C8623B;text-transform:uppercase;}
+.t-lead{font-size:var(--text-lead-size);font-weight:var(--text-lead-weight);line-height:var(--text-lead-lh);letter-spacing:var(--text-lead-ls);color:#2B5E91;}
+.t-body{font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-lh);letter-spacing:var(--text-body-ls);color:#193652;}
+.t-caption{font-size:var(--text-caption-size);font-weight:var(--text-caption-weight);line-height:var(--text-caption-lh);letter-spacing:var(--text-caption-ls);color:#2B5E91;}
+.t-button{font-size:var(--text-button-size);font-weight:var(--text-button-weight);line-height:var(--text-button-lh);letter-spacing:var(--text-button-ls);color:#FFFFFF;}
+
+/* 버튼(라벨 중앙정렬 강제) */
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;padding:14px 24px;border-radius:var(--radius-pill);border:0;cursor:pointer;font-family:var(--font-sans)}
+.btn-primary{background:var(--color-accentStrong);color:var(--color-onAccent)}
+.btn-ghost{background:transparent;color:var(--color-ink);border:1.5px solid var(--color-border)}

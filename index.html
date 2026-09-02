@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고향봉투 · 함께 모아 보내는 공동구매 국제소포</title>
+<meta name="description" content="한국의 동료들과 함께 모아 보내면 배송비가 내려갑니다. 고향봉투는 안전결제(에스크로)·정식 통관·실시간 배송추적을 갖춘 공동구매 국제소포 서비스입니다.">
+<meta property="og:title" content="고향봉투 · 함께 모아 보내는 공동구매 국제소포">
+<meta property="og:description" content="같은 공단·같은 나라로 가는 소포를 한데 모아 한 번에. 여럿이 모일수록 배송비가 내려갑니다.">
+<link rel="stylesheet" href="tokens.css">
+<!-- 다국어 글리프 커버리지: 라틴(영어/베트남어 성조/인니/타갈로그)·데바나가리(네팔어)·크메르(캄보디아어). 두부글자 방지 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700;800&display=swap">
+<style>
+  /* 언어별 폰트 — 한국어=Pretendard, 나머지=Noto(문자별 커버리지) */
+  html[lang="ne"] body, html[lang="ne"] .t-display, html[lang="ne"] .t-h1, html[lang="ne"] .t-h2, html[lang="ne"] .t-h3, html[lang="ne"] .t-button, html[lang="ne"] .btn{font-family:'Noto Sans Devanagari','Noto Sans',sans-serif}
+  html[lang="km"] body, html[lang="km"] .t-display, html[lang="km"] .t-h1, html[lang="km"] .t-h2, html[lang="km"] .t-h3, html[lang="km"] .t-button, html[lang="km"] .btn{font-family:'Noto Sans Khmer','Noto Sans',sans-serif;line-height:1.9}
+  html[lang="vi"] body, html[lang="en"] body, html[lang="id"] body, html[lang="fil"] body,
+  html[lang="vi"] .t-display, html[lang="en"] .t-display, html[lang="id"] .t-display, html[lang="fil"] .t-display,
+  html[lang="vi"] .t-h1, html[lang="en"] .t-h1, html[lang="id"] .t-h1, html[lang="fil"] .t-h1,
+  html[lang="vi"] .t-h2, html[lang="en"] .t-h2, html[lang="id"] .t-h2, html[lang="fil"] .t-h2,
+  html[lang="vi"] .t-h3, html[lang="en"] .t-h3, html[lang="id"] .t-h3, html[lang="fil"] .t-h3,
+  html[lang="vi"] .btn, html[lang="en"] .btn, html[lang="id"] .btn, html[lang="fil"] .btn{font-family:'Noto Sans',-apple-system,BlinkMacSystemFont,sans-serif}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+  .center{text-align:center}
+  .eyebrow-line{display:inline-flex;align-items:center;gap:10px}
+  .eyebrow-line::before{content:"";width:26px;height:2px;background:var(--color-accent);display:inline-block}
+
+  /* ── 헤더 ── */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--color-bg) 90%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--color-ink);font-size:20px;letter-spacing:-.01em;white-space:nowrap}
+  .brand .mark{width:34px;height:34px;border-radius:9px;background:var(--color-seed);display:grid;place-items:center;flex:none}
+  .brand .mark svg{width:20px;height:20px}
+  .brand small{display:block;font-size:11px;font-weight:600;color:var(--color-muted);letter-spacing:.14em;margin-top:1px}
+  .menu{display:flex;align-items:center;gap:26px;color:var(--color-muted);font-weight:600;font-size:14.5px}
+  .menu a:hover{color:var(--color-ink)}
+  .langwrap{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--color-seed);border-radius:var(--radius-pill);padding:0 6px 0 12px;background:var(--color-surface);color:var(--color-seed)}
+  .langwrap .globe{width:18px;height:18px;flex:none}
+  #langsel{border:0;background:transparent;font-family:var(--font-sans);font-size:14px;font-weight:700;color:var(--color-seed);cursor:pointer;padding:9px 4px;line-height:1;-webkit-appearance:none;appearance:none}
+  #langsel:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
+  .head-right{display:flex;align-items:center;gap:16px}
+
+  /* ── 히어로 ── */
+  .hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover;transform:scale(1.03)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(107deg, color-mix(in srgb, var(--color-seed) 92%, transparent) 0%, color-mix(in srgb, var(--color-seed) 78%, transparent) 46%, color-mix(in srgb, var(--color-seed) 40%, transparent) 100%)}
+  .hero .wrap{position:relative;z-index:1;padding:84px 24px}
+  .hero .t-eyebrow{color:#F3C9B4}
+  .hero .t-display{color:#fff;margin:16px 0 20px;max-width:20ch}
+  .hero .t-lead{color:#EAF0F6;max-width:40ch}
+  .cta{display:flex;gap:13px;margin-top:32px;flex-wrap:wrap}
+  .btn-lg{padding:16px 30px;font-size:16px}
+  .btn-white{background:#fff;color:var(--color-seed)}
+  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+
+  /* 신뢰 배지 스트립 */
+  .trust{position:relative;z-index:1;margin-top:44px;display:flex;gap:0;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.22);padding-top:26px}
+  .trust .ti{display:flex;align-items:flex-start;gap:12px;padding:2px 30px 2px 0;flex:1 1 220px;min-width:0}
+  .trust .ti + .ti{border-left:1px solid rgba(255,255,255,.18);padding-left:30px}
+  .trust .ti svg{width:26px;height:26px;flex:none;color:#F3C9B4;margin-top:2px}
+  .trust .tt{font-weight:700;font-size:15px;color:#fff;letter-spacing:-.01em}
+  .trust .td{font-size:12.5px;color:#D8E2EC;margin-top:3px;line-height:1.5}
+
+  /* ── 섹션 공통 ── */
+  section{padding:88px 0}
+  .sec-head{max-width:60ch;margin-bottom:46px}
+  .sec-head.center{margin-left:auto;margin-right:auto}
+  .sec-head .t-h2{margin:13px 0 14px}
+  .band-navy{background:var(--color-seed);color:#fff}
+  .band-navy .t-h2,.band-navy .t-h3{color:#fff}
+  .band-navy .t-body{color:#D8E2EC}
+  .band-tint{background:color-mix(in srgb, var(--color-seed) 5%, var(--color-bg))}
+
+  /* WHY 스플릿 */
+  .split{display:grid;grid-template-columns:0.92fr 1.08fr;gap:60px;align-items:center}
+  .split img{width:100%;border-radius:var(--radius-lg);aspect-ratio:4/3;object-fit:cover}
+  .why-points{display:grid;grid-template-columns:1fr 1fr;gap:28px 30px;margin-top:30px}
+  .wp{border-top:3px solid var(--color-accent);padding-top:14px}
+  .wp .n{font-size:13px;font-weight:800;color:var(--color-accentText);letter-spacing:.04em}
+  .wp .t-h3{margin:6px 0 6px;font-size:18px}
+  .callout{margin-top:34px;background:var(--color-seed);color:#fff;border-radius:var(--radius-md);padding:22px 26px;display:flex;gap:14px;align-items:flex-start}
+  .callout svg{width:24px;height:24px;color:#F3C9B4;flex:none;margin-top:2px}
+  .callout p{color:#EAF0F6;font-size:15px;line-height:1.65}
+
+  /* 공동구매 */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+  .chip{border:1.5px solid var(--color-border);background:var(--color-surface);border-radius:var(--radius-pill);padding:9px 18px;font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--color-muted);cursor:pointer}
+  .chip.on{background:var(--color-seed);color:#fff;border-color:var(--color-seed)}
+  .gb-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .gb{position:relative;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:24px 24px 22px;border-left:4px solid var(--color-accent);overflow:hidden}
+  .gb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .gb .flag{font-size:26px;line-height:1}
+  .gb .route{font-weight:700;font-size:17px;color:var(--color-ink);letter-spacing:-.01em}
+  .gb .dest{font-size:13px;color:var(--color-muted);margin-top:2px}
+  .timer{text-align:right;flex:none}
+  .timer .lab{font-size:11px;color:var(--color-muted);font-weight:600;letter-spacing:.04em}
+  .timer .clk{font-variant-numeric:tabular-nums;font-weight:800;font-size:19px;color:var(--color-accentText);letter-spacing:.02em}
+  .soon{display:inline-block;margin-top:4px;background:color-mix(in srgb,var(--color-accent) 14%,#fff);color:var(--color-accentText);font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--radius-pill)}
+  .meter{margin-top:6px}
+  .meter .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
+  .meter .row b{color:var(--color-ink)}
+  .bar{height:8px;background:var(--color-border);border-radius:var(--radius-pill);overflow:hidden}
+  .bar>i{display:block;height:100%;background:var(--color-seed);border-radius:var(--radius-pill)}
+  .gb .btn{width:100%;margin-top:18px}
+
+  /* 지도 */
+  .map-frame{border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 10px 30px -18px rgba(23,50,77,.4)}
+  .map-frame iframe{display:block;width:100%;height:380px;border:0}
+
+  /* HOW 스텝 타임라인 */
+  .steps{position:relative;max-width:760px;margin:0 auto}
+  .steps::before{content:"";position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--color-border)}
+  .step{position:relative;display:flex;gap:22px;padding:0 0 34px 0}
+  .step:last-child{padding-bottom:0}
+  .step .num{position:relative;z-index:1;width:48px;height:48px;flex:none;border-radius:50%;background:var(--color-seed);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+  .step.warn .num{background:var(--color-accentStrong)}
+  .step .t-h3{font-size:18px;margin-bottom:4px}
+
+  /* 금지품 */
+  .ban-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 26px;margin-bottom:26px}
+  .ban{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--color-border)}
+  .ban .ic{width:46px;height:46px;flex:none;border-radius:12px;background:color-mix(in srgb,var(--color-accent) 12%,#fff);display:grid;place-items:center}
+  .ban .ic svg{width:24px;height:24px;color:var(--color-accentStrong)}
+  .ban span{font-weight:600;color:var(--color-ink);font-size:15px;line-height:1.4}
+  .ban-note{display:flex;gap:12px;align-items:flex-start;color:var(--color-muted);font-size:14px}
+  .ban-note svg{width:20px;height:20px;flex:none;color:var(--color-accentStrong);margin-top:2px}
+
+  /* 배송추적 */
+  .track{display:flex;gap:0;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .tnode{flex:1 1 0;min-width:150px;text-align:center;position:relative;padding:0 8px}
+  .tnode::before{content:"";position:absolute;top:19px;left:-50%;width:100%;height:2px;background:var(--color-border);z-index:0}
+  .tnode:first-child::before{display:none}
+  .tnode .dot{position:relative;z-index:1;width:40px;height:40px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--color-border)}
+  .tnode .dot svg{width:20px;height:20px;color:#fff}
+  .tnode.done .dot,.tnode.now .dot{background:var(--color-seed)}
+  .tnode.now .dot{box-shadow:0 0 0 5px color-mix(in srgb,var(--color-seed) 18%,transparent)}
+  .tnode.done::before{background:var(--color-seed)}
+  .tnode .tt{font-weight:700;font-size:14px;color:var(--color-ink)}
+  .tnode .ts{font-size:12px;margin-top:3px;font-weight:600}
+  .tnode.done .ts{color:var(--color-seed)}
+  .tnode.now .ts{color:var(--color-accentText)}
+  .tnode.wait .ts{color:var(--color-muted)}
+  .track-meta{display:flex;gap:10px;align-items:baseline;margin-bottom:34px;flex-wrap:wrap}
+  .track-meta .no{font-variant-numeric:tabular-nums;font-weight:800;color:var(--color-ink);font-size:18px;letter-spacing:.03em}
+
+  /* 에스크로 */
+  .es-points{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+  .es-points li{display:flex;gap:12px;align-items:center;list-style:none;font-weight:600;color:var(--color-ink);font-size:16px}
+  .es-points svg{width:24px;height:24px;color:var(--color-accentStrong);flex:none}
+  .es-diagram{background:color-mix(in srgb,var(--color-seed) 6%,#fff);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:30px}
+  .es-why{margin-top:22px;font-weight:700;color:var(--color-seed);font-size:16px}
+
+  /* 리더 */
+  .leader-rule{margin-top:24px;border-left:4px solid var(--color-accent);padding:6px 0 6px 20px;font-weight:600;color:var(--color-ink)}
+
+  /* 곧 오픈 밴드 */
+  .soon-band{text-align:center;max-width:640px;margin:0 auto}
+  .pill-badge{display:inline-block;background:rgba(255,255,255,.14);color:#F3C9B4;font-size:12px;font-weight:800;letter-spacing:.16em;padding:7px 16px;border-radius:var(--radius-pill);margin-bottom:18px}
+
+  /* 후기 */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+  .q{position:relative;padding-top:30px}
+  .q::before{content:"\201C";position:absolute;top:-8px;left:-2px;font-size:60px;line-height:1;color:var(--color-accent);font-family:Georgia,serif}
+  .q p{color:var(--color-ink);font-weight:500;font-size:16px;line-height:1.7}
+
+  /* FAQ */
+  .faq{max-width:820px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--color-border);padding:6px 0}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font-weight:700;color:var(--color-ink);font-size:17px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:6px;top:16px;font-size:24px;font-weight:400;color:var(--color-accentText);transition:transform .2s}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq .ans{padding:0 40px 20px 0;color:var(--color-body)}
+
+  /* 소개 + 규제 */
+  .about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+  .compliance{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:30px 32px}
+  .compliance h4{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--color-accentText);text-transform:uppercase;margin-bottom:18px}
+  .compliance li{display:flex;gap:12px;align-items:flex-start;list-style:none;padding:11px 0;border-bottom:1px dashed var(--color-border);font-weight:600;color:var(--color-ink)}
+  .compliance li:last-child{border-bottom:0}
+  .compliance svg{width:22px;height:22px;color:var(--color-seed);flex:none;margin-top:1px}
+
+  /* QR 밴드 */
+  .qr-band{display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:left}
+  #qrcode{width:150px;height:150px;background:#fff;padding:12px;border-radius:var(--radius-md);display:grid;place-items:center}
+  #qrcode img,#qrcode canvas{width:126px!important;height:126px!important;display:block}
+
+  /* 푸터 */
+  footer{background:var(--color-ink);color:#B9C4CF;padding:60px 0 120px}
+  footer .brand{color:#fff}
+  footer .brand small{color:#8FA0B2}
+  footer .ftag{margin:16px 0 22px;color:#C6D0DA;max-width:44ch;font-size:15px}
+  footer .fnav{display:flex;gap:22px;flex-wrap:wrap;margin:0 0 26px;color:#DCE4EC;font-weight:600;font-size:14px}
+  footer .credits{font-size:12px;color:#7C8A98;line-height:1.8;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
+  footer .credits a{text-decoration:underline;color:#9DAAB8}
+
+  /* 모바일 하단 고정 CTA */
+  .mobicta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:color-mix(in srgb,var(--color-bg) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--color-border);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+  .mobicta .btn{width:100%}
+
+  @media(max-width:900px){
+    .split,.about{grid-template-columns:1fr;gap:30px}
+    .why-points{grid-template-columns:1fr 1fr}
+    .quotes{grid-template-columns:1fr;gap:8px}
+    .q{padding-top:26px;border-top:1px solid var(--color-border);margin-top:8px}
+    .q:first-child{border-top:0}
+  }
+  @media(max-width:760px){
+    .menu{display:none}
+    .brand small{display:none}
+    .gb-grid,.ban-grid,.why-points{grid-template-columns:1fr}
+    .ban-grid{gap:0}
+    section{padding:60px 0}
+    .hero{min-height:600px}
+    .hero .wrap{padding:64px 20px}
+    .trust .ti{flex:1 1 100%;padding:14px 0}
+    .trust .ti + .ti{border-left:0;border-top:1px solid rgba(255,255,255,.16);padding-left:0}
+    .track{gap:4px}
+    .tnode{min-width:132px}
+    .mobicta{display:block}
+    footer{padding-bottom:96px}
+    .qr-band{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/></svg></span>
+      <span>고향봉투<small>GOHYANG</small></span>
+    </a>
+    <div class="head-right">
+      <nav class="menu">
+        <a href="#why" data-i18n="nav.why">왜 저렴한가</a>
+        <a href="#gonggu" data-i18n="nav.gonggu">공동구매</a>
+        <a href="#how" data-i18n="nav.how">보내는 방법</a>
+        <a href="#track" data-i18n="nav.track">배송추적</a>
+        <a href="#safe" data-i18n="nav.safe">안전결제</a>
+        <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
+      </nav>
+      <div class="langwrap">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg>
+        <select id="langsel" aria-label="언어 선택 / Choose language">
+          <option value="ne">नेपाली</option>
+          <option value="km">ខ្មែរ</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="fil">Filipino</option>
+          <option value="en">English</option>
+          <option value="ko">한국어</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 히어로 -->
+<div class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="t-eyebrow eyebrow-line" data-i18n="hero.eyebrow">한국에서 고향으로 · 함께 보내는 국제소포</div>
+    <h1 class="t-display" data-i18n="hero.title">함께 모아 보내면,<br>고향으로 가는 배송비가 내려갑니다.</h1>
+    <p class="t-lead" data-i18n="hero.sub">같은 공단, 같은 나라로 가는 소포를 한데 모아 한 번에 보냅니다. 여럿이 모일수록 상자 한 개당 배송비가 낮아집니다.</p>
+    <div class="cta">
+      <a href="#how" class="btn btn-white btn-lg"><span class="t-button" style="color:var(--color-seed)" data-i18n="hero.cta1">소포 보내기</span></a>
+      <a href="#gonggu" class="btn btn-ghost btn-lg"><span class="t-button" style="color:#fff" data-i18n="hero.cta2">진행 중인 공동구매</span></a>
+    </div>
+
+    <div class="trust">
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div><div class="tt" data-i18n="badge.escrow">안전결제 (에스크로)</div><div class="td" data-i18n="badge.escrow.d">도착·수령 확인 후 정산</div></div>
+      </div>
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16M4 15h16"/><path d="M6 5h12l2 4v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9l2-4z"/></svg>
+        <div><div class="tt" data-i18n="badge.customs">정식 통관 · 정식 배송</div><div class="td" data-i18n="badge.customs.d">등록 특송사·관세법인이 담당</div></div>
+      </div>
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 5 8 12 8 12s8-7 8-12c0-4.4-3.6-8-8-8z"/></svg>
+        <div><div class="tt" data-i18n="badge.track">실시간 배송추적</div><div class="td" data-i18n="badge.track.d">접수부터 집앞까지</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY : 집화 밀도 (규제 하드락) -->
+<section id="why">
+  <div class="wrap split">
+    <img src="images/pack.jpg" alt="정성껏 완충재로 포장한 갈색 소포를 두 손으로 감싸 든 모습">
+    <div>
+      <div class="t-eyebrow eyebrow-line" data-i18n="why.eyebrow">왜 더 저렴할까요</div>
+      <h2 class="t-h2" data-i18n="why.title">세금을 줄이는 게 아니라, 배송을 모읍니다</h2>
+      <p class="t-body" data-i18n="why.body">배송비를 낮추는 방법은 하나입니다. 같은 목적지로 가는 소포를 한 거점에 모아 한 번에 실어 보내는 것. 모으는 양이 많아질수록 상자 한 개당 드는 운송·집하 비용이 줄어듭니다.</p>
+      <div class="why-points">
+        <div class="wp"><div class="n">01</div><h3 class="t-h3" data-i18n="why.p1.t">모으면 단가가 내려갑니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p1.d">열 개를 한 번에 실으면 한 개당 운송비가 낮아집니다.</p></div>
+        <div class="wp"><div class="n">02</div><h3 class="t-h3" data-i18n="why.p2.t">세금과는 무관합니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p2.d">각 소포는 본인 개인통관부호로 정상 가격을 신고하는 정식 통관입니다. 나눠 보내거나 숨기지 않습니다.</p></div>
+        <div class="wp"><div class="n">03</div><h3 class="t-h3" data-i18n="why.p3.t">정식 파트너가 운송합니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p3.d">통관과 배송은 정식 등록된 국제특송사·관세법인이 맡습니다.</p></div>
+        <div class="wp" style="border-top-color:transparent;padding-top:0;display:flex;align-items:center">
+          <p class="t-caption" data-i18n="why.p4.d">정확한 요율은 단일 공단 파일럿에서 실측해 확정·공개합니다.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+        <p data-i18n="why.callout">고향봉투는 '면세'나 '세금 절약'을 약속하지 않습니다. 저렴함의 이유는 오직 '여럿이 함께 모아 보내는 것'입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 진행 중 공동구매 -->
+<section id="gonggu" class="band-tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t-eyebrow eyebrow-line" data-i18n="gb.eyebrow">진행 중인 공동구매</div>
+      <h2 class="t-h2" data-i18n="gb.title">우리 동네 거점에서 함께 보내요</h2>
+      <p class="t-body" data-i18n="gb.sub">거점별로 마감 시간까지 소포를 모읍니다. 마감 전에 참여하면 이번 합배송에 함께 실립니다.</p>
+    </div>
+    <div class="filters" role="group" aria-label="국가 필터">
+      <button class="chip on" data-filter="all" data-i18n="filter.all">전체</button>
+      <button class="chip" data-filter="np" data-i18n="filter.np">네팔</button>
+      <button class="chip" data-filter="kh" data-i18n="filter.kh">캄보디아</button>
+      <button class="chip" data-filter="vn" data-i18n="filter.vn">베트남 (곧)</button>
+    </div>
+    <div class="gb-grid">
+      <!-- card 1 -->
+      <div class="gb" data-country="np">
+        <div class="gb-top">
+          <div><div class="route"><span class="flag">🇳🇵</span> <span data-i18n="card1.route">화성 향남공단 → 카트만두</span></div><div class="dest" data-i18n="gb.destNp">네팔행 · 표준소포 합배송</div></div>
+          <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="52">--</div></div>
+        </div>
+        <div class="meter">
+          <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>46kg</b> / 60kg · 12<span data-i18n="gb.peopleUnit">명</span></span></div>
+          <div class="bar"><i style="width:77%"></i></div>
+        </div>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+      </div>
+      <!-- card 2 -->
+      <div class="gb" data-country="kh">
+        <div class="gb-top">
+          <div><div class="route"><span class="flag">🇰🇭</span> <span data-i18n="card2.route">안산 원곡동 → 프놈펜</span></div><div class="dest" data-i18n="gb.destKh">캄보디아행 · 표준소포 합배송</div></div>
+          <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="99">--</div></div>
+        </div>
+        <div class="meter">
+          <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>31kg</b> / 60kg · 8<span data-i18n="gb.peopleUnit">명</span></span></div>
+          <div class="bar"><i style="width:52%"></i></div>
+        </div>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+      </div>
+      <!-- card 3 -->
+      <div class="gb" data-country="np">
+        <div class="gb-top">
+          <div><div class="route"><span class="flag">🇳🇵</span> <span data-i18n="card3.route">김해 → 카트만두</span></div><div class="dest" data-i18n="gb.destNp">네팔행 · 표준소포 합배송</div></div>
+          <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="20">--</div><div class="soon" data-i18n="gb.closing">마감 임박</div></div>
+        </div>
+        <div class="meter">
+          <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>58kg</b> / 60kg · 17<span data-i18n="gb.peopleUnit">명</span></span></div>
+          <div class="bar"><i style="width:96%"></i></div>
+        </div>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+      </div>
+      <!-- card 4 -->
+      <div class="gb" data-country="kh">
+        <div class="gb-top">
+          <div><div class="route"><span class="flag">🇰🇭</span> <span data-i18n="card4.route">시흥 정왕동 → 프놈펜</span></div><div class="dest" data-i18n="gb.destKh">캄보디아행 · 표준소포 합배송</div></div>
+          <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="140">--</div></div>
+        </div>
+        <div class="meter">
+          <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>19kg</b> / 60kg · 5<span data-i18n="gb.peopleUnit">명</span></span></div>
+          <div class="bar"><i style="width:32%"></i></div>
+        </div>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 거점 지도 -->
+<section id="map">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="t-eyebrow eyebrow-line" data-i18n="map.eyebrow">거점 지도</div>
+      <h2 class="t-h2" data-i18n="map.title">공단 기숙사 가까운 곳에서 집하합니다</h2>
+    </div>
+    <div class="map-frame">
+      <iframe title="집하 거점 예시 지도 (화성 향남공단 일대)" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=126.86%2C37.05%2C127.02%2C37.14&layer=mapnik&marker=37.0955%2C126.9385"></iframe>
+    </div>
+    <p class="t-caption center" style="margin-top:14px" data-i18n="map.note">지도는 예시 위치입니다. 실제 거점은 파일럿에서 확정합니다.</p>
+  </div>
+</section>
+
+<!-- 보내는 방법 -->
+<section id="how" class="band-tint">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="t-eyebrow eyebrow-line" data-i18n="how.eyebrow">보내는 방법</div>
+      <h2 class="t-h2" data-i18n="how.title">여섯 단계면 끝납니다</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h3 class="t-h3" data-i18n="step1.t">나라·거점 선택</h3><p class="t-body" data-i18n="step1.d">고향 나라와 가까운 집하 거점을 고릅니다.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3 class="t-h3" data-i18n="step2.t">물품·무게 입력</h3><p class="t-body" data-i18n="step2.d">무엇을 보낼지 적으면 무게를 계산해 드립니다.</p></div></div>
+      <div class="step warn"><div class="num">3</div><div><h3 class="t-h3" data-i18n="step3.t">금지품 자동 확인</h3><p class="t-body" data-i18n="step3.d">보낼 수 없는 물건은 이 단계에서 걸러 드립니다.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3 class="t-h3" data-i18n="step4.t">예상 배송비 확인</h3><p class="t-body" data-i18n="step4.d">합배송으로 낮아진 예상 배송비를 보여드립니다.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3 class="t-h3" data-i18n="step5.t">안전결제 (에스크로)</h3><p class="t-body" data-i18n="step5.d">결제금은 도착·수령이 확인될 때까지 안전하게 보관됩니다.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h3 class="t-h3" data-i18n="step6.t">픽업·거점 집하</h3><p class="t-body" data-i18n="step6.d">정해진 날 거점에 모아 한 번에 발송합니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 금지품 안내 -->
+<section id="ban">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t-eyebrow eyebrow-line" data-i18n="ban.eyebrow">보낼 수 없는 물건</div>
+      <h2 class="t-h2" data-i18n="ban.title">이런 물건은 발송 단계에서 자동으로 막습니다</h2>
+    </div>
+    <div class="ban-grid">
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 11h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-2z"/><path d="M8 21h8"/></svg></span><span data-i18n="ban.i1">육류·소시지 등 돼지고기 포함 식품</span></div>
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c0-3 2-5 5-5 0 3-2 5-5 5z"/><path d="M12 8c-1.5-2-4-3-6-2 0 4 3 13 6 15 3-2 6-11 6-15-2-1-4.5 0-6 2z"/></svg></span><span data-i18n="ban.i2">신선 과일·채소</span></div>
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="9" rx="2"/><path d="M19 11h2v3h-2"/><path d="M7 12l2.5 0M11 10.5v3"/></svg></span><span data-i18n="ban.i3">보조배터리·리튬 배터리</span></div>
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 4.5l9 9a4.95 4.95 0 0 1-7 7l-9-9a4.95 4.95 0 0 1 7-7z"/><path d="M7 8l6 6"/></svg></span><span data-i18n="ban.i4">의약품·건강기능식품</span></div>
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 6-3 3-3-3-1-6z"/><path d="M12 12v7"/><path d="M8 21h8"/></svg></span><span data-i18n="ban.i5">주류·담배</span></div>
+      <div class="ban"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 9.8c0-1 1.1-1.8 2.5-1.8s2.5.6 2.5 1.6-1 1.4-2.5 1.4-2.5.6-2.5 1.6 1.1 1.6 2.5 1.6 2.5-.8 2.5-1.8"/></svg></span><span data-i18n="ban.i6">현금·귀금속</span></div>
+    </div>
+    <div class="ban-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+      <p data-i18n="ban.note">나라마다 규정이 다릅니다. 업로드할 때 자동으로 확인해 드리고, 막히는 품목은 미리 알려드립니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 배송추적 -->
+<section id="track" class="band-tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t-eyebrow eyebrow-line" data-i18n="tr.eyebrow">배송추적</div>
+      <h2 class="t-h2" data-i18n="tr.title">접수부터 집앞까지, 어디쯤인지 보입니다</h2>
+    </div>
+    <div class="track-meta">
+      <span class="t-caption" data-i18n="tr.sample">예시 송장번호</span>
+      <span class="no">GH-2609-NP-04821</span>
+    </div>
+    <div class="track">
+      <div class="tnode done"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><div class="tt" data-i18n="t1">접수 완료</div><div class="ts" data-i18n="tr.status.done">완료</div></div>
+      <div class="tnode done"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><div class="tt" data-i18n="t2">거점 집하</div><div class="ts" data-i18n="tr.status.done">완료</div></div>
+      <div class="tnode now"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t3">정식 통관</div><div class="ts" data-i18n="tr.status.now">진행 중</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t4">항공 운송</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t5">목적국 도착</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t6">집앞 배송</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 안전결제(에스크로) -->
+<section id="safe">
+  <div class="wrap split">
+    <div>
+      <div class="t-eyebrow eyebrow-line" data-i18n="es.eyebrow">안전결제</div>
+      <h2 class="t-h2" data-i18n="es.title">배송이 끝날 때까지, 돈은 안전하게 보관됩니다</h2>
+      <p class="t-body" data-i18n="es.body">결제하신 금액은 정식 결제대행사(PG)가 안전하게 맡아 둡니다. 고향봉투는 여러분의 돈을 직접 걷거나 보관하지 않습니다. 소포가 도착해 수령이 확인되면 그때 정산됩니다.</p>
+      <ul class="es-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="es.p1">현금을 걷지 않습니다</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="es.p2">라이선스 PG에 위탁</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="es.p3">수령 확인 후 정산</span></li>
+      </ul>
+      <p class="es-why" data-i18n="es.why">그래서 '돈만 받고 사라지는' 사기를 구조적으로 막습니다.</p>
+    </div>
+    <div class="es-diagram">
+      <svg viewBox="0 0 360 210" width="100%" role="img" aria-label="에스크로 흐름: 보내는 사람이 결제하면 PG가 안전하게 보관하고, 수령이 확인되면 파트너에게 정산됩니다">
+        <defs><style>.lbl{font:600 12px Pretendard,sans-serif;fill:#193652}.sub{font:500 10px Pretendard,sans-serif;fill:#2B5E91}</style></defs>
+        <!-- sender -->
+        <circle cx="46" cy="70" r="26" fill="#EFF5FA" stroke="#B0CCE8"/>
+        <g stroke="#17324D" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="46" cy="63" r="6"/><path d="M35 84c0-7 5-11 11-11s11 4 11 11"/></g>
+        <text x="46" y="112" text-anchor="middle" class="lbl">보내는 사람</text>
+        <!-- arrow -->
+        <path d="M78 70H150" stroke="#C8623B" stroke-width="2" marker-end="url(#a)"/>
+        <text x="114" y="60" text-anchor="middle" class="sub">결제</text>
+        <!-- escrow lock -->
+        <rect x="150" y="40" width="60" height="60" rx="12" fill="#17324D"/>
+        <g stroke="#F3C9B4" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="169" y="68" width="22" height="16" rx="2"/><path d="M173 68v-4a7 7 0 0 1 14 0v4"/></g>
+        <text x="180" y="118" text-anchor="middle" class="lbl">에스크로 보관</text>
+        <text x="180" y="133" text-anchor="middle" class="sub">라이선스 PG</text>
+        <!-- arrow -->
+        <path d="M212 70H286" stroke="#C8623B" stroke-width="2" marker-end="url(#a)"/>
+        <text x="250" y="60" text-anchor="middle" class="sub">수령 확인 후</text>
+        <!-- partner -->
+        <circle cx="314" cy="70" r="26" fill="#EFF5FA" stroke="#B0CCE8"/>
+        <g stroke="#17324D" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M302 62h24v14h-24z"/><path d="M302 62l4-5h16l4 5"/></g>
+        <text x="314" y="112" text-anchor="middle" class="lbl">정식 파트너</text>
+        <text x="314" y="127" text-anchor="middle" class="sub">특송사·관세법인</text>
+        <path d="M46 150h268" stroke="#D8E6F3" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <text x="180" y="172" text-anchor="middle" class="sub">돈은 고향봉투를 거치지 않습니다 · 현금 걷지 않음</text>
+        <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0l7 4-7 4z" fill="#C8623B"/></marker></defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 동네 리더 -->
+<section id="leader" class="band-tint">
+  <div class="wrap split">
+    <div>
+      <div class="t-eyebrow eyebrow-line" data-i18n="ld.eyebrow">동네 공구 리더</div>
+      <h2 class="t-h2" data-i18n="ld.title">이웃의 공동구매를 돕고 보상받습니다</h2>
+      <p class="t-body" data-i18n="ld.body">기숙사 통역, 식당, 종교 모임처럼 이웃이 모이는 곳의 믿을 만한 분이 공동구매를 돕습니다.</p>
+      <div class="leader-rule" data-i18n="ld.rule">리더는 현금을 직접 걷지 않습니다. 모든 결제는 앱의 안전결제로만 이뤄집니다.</div>
+    </div>
+    <div class="es-diagram" style="background:var(--color-surface)">
+      <svg viewBox="0 0 360 200" width="100%" role="img" aria-label="동네 리더가 여러 이웃의 공동구매를 하나의 거점으로 모으는 그림">
+        <defs><style>.l2{font:600 11px Pretendard,sans-serif;fill:#193652}</style></defs>
+        <g stroke="#17324D" stroke-width="1.6" fill="none"><circle cx="60" cy="40" r="12"/><circle cx="60" cy="100" r="12"/><circle cx="60" cy="160" r="12"/></g>
+        <path d="M74 44L150 96M74 100H150M74 156L150 104" stroke="#C8623B" stroke-width="1.8"/>
+        <circle cx="175" cy="100" r="26" fill="#17324D"/>
+        <g stroke="#F3C9B4" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="175" cy="93" r="6"/><path d="M164 114c0-7 5-11 11-11s11 4 11 11"/></g>
+        <text x="175" y="150" text-anchor="middle" class="l2">동네 리더</text>
+        <path d="M203 100H270" stroke="#C8623B" stroke-width="2" marker-end="url(#b)"/>
+        <g stroke="#17324D" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M285 86h34v28h-34z"/><path d="M285 86l5-6h24l5 6"/><path d="M302 80v34"/></g>
+        <text x="302" y="132" text-anchor="middle" class="l2">거점 집하</text>
+        <text x="60" y="184" text-anchor="middle" class="l2">이웃들</text>
+        <defs><marker id="b" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0l7 4-7 4z" fill="#C8623B"/></marker></defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 후기 -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="t-eyebrow eyebrow-line" data-i18n="rev.eyebrow">먼저 써 본 이웃들 (예시)</div>
+      <h2 class="t-h2" data-i18n="rev.title">신뢰가 쌓이는 이유</h2>
+    </div>
+    <div class="quotes">
+      <div class="q"><p data-i18n="rev1">“돈을 미리 안 걷고, 도착하면 정산된다니 안심돼요.” — 네팔, 향남</p></div>
+      <div class="q"><p data-i18n="rev2">“혼자 보내던 걸 같이 보내니 배송비가 줄었어요.” — 캄보디아, 원곡</p></div>
+      <div class="q"><p data-i18n="rev3">“네팔어로 되어 있어서 이해하기 쉬웠어요.” — 네팔, 김해</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 곧 오픈: 역방향 -->
+<section class="band-navy">
+  <div class="wrap soon-band">
+    <span class="pill-badge" data-i18n="rv.badge">곧 오픈</span>
+    <h2 class="t-h2" data-i18n="rv.title">곧, 고향의 맛도 함께 모아요</h2>
+    <p class="t-body" style="margin-top:12px" data-i18n="rv.body">고향의 식품·특산품을 한국에서 함께 구매하는 역방향 공동구매를 준비하고 있습니다.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="t-eyebrow eyebrow-line" data-i18n="faq.eyebrow">자주 묻는 질문</div>
+      <h2 class="t-h2" data-i18n="faq.title">궁금한 점을 모았습니다</h2>
+    </div>
+    <div class="faq">
+      <details open><summary data-i18n="faq.q1">정말 더 싼가요?</summary><div class="ans t-body" data-i18n="faq.a1">여럿이 모아 한 번에 보내기 때문입니다. 정확한 절감액은 공단 파일럿에서 확정해 공개합니다.</div></details>
+      <details><summary data-i18n="faq.q2">세금을 아끼는 건가요?</summary><div class="ans t-body" data-i18n="faq.a2">아닙니다. 각 소포는 본인 개인통관부호로 정상 가격을 신고하는 정식 통관입니다.</div></details>
+      <details><summary data-i18n="faq.q3">물건이 없어지면 어떻게 되나요?</summary><div class="ans t-body" data-i18n="faq.a3">수령이 확인될 때까지 결제금은 PG가 안전하게 보관합니다. 통관·배송은 정식 특송사·관세법인이 책임집니다.</div></details>
+      <details><summary data-i18n="faq.q4">무엇을 못 보내나요?</summary><div class="ans t-body" data-i18n="faq.a4">육류·돈육 식품, 생과일, 리튬 배터리, 의약품 등은 발송 단계에서 막습니다.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 소개 + 규제 -->
+<section id="about" class="band-tint">
+  <div class="wrap about">
+    <div>
+      <div class="t-eyebrow eyebrow-line" data-i18n="ab.eyebrow">고향봉투 소개</div>
+      <h2 class="t-h2" data-i18n="ab.title">한국에 사는 이주 노동자와 고향을 잇습니다</h2>
+      <p class="t-body" data-i18n="ab.body">고향봉투는 공동구매 국제소포 서비스를 준비하는 팀입니다. 통관·운송은 정식 등록 파트너가, 결제는 라이선스 PG가 맡습니다.</p>
+      <div class="qr-band" style="margin-top:30px;justify-content:flex-start">
+        <div id="qrcode" aria-hidden="true"></div>
+        <div>
+          <h3 class="t-h3" data-i18n="qr.title">휴대폰으로 공유하기</h3>
+          <p class="t-caption" style="margin-top:4px" data-i18n="qr.d">QR을 찍으면 이 페이지가 열립니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="compliance">
+      <h4 data-i18n="ab.compliance">규제 준수 원칙</h4>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="ab.c1">정식 통관 원칙</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="ab.c2">개인통관부호·정상가액 신고</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="ab.c3">면세·절세를 표방하지 않음</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-i18n="ab.c4">금지품 발송 차단</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="color:#fff">
+      <span class="mark" style="background:var(--color-accentStrong)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/></svg></span>
+      <span>고향봉투<small>GOHYANG</small></span>
+    </div>
+    <p class="ftag" data-i18n="foot.tag">한국에서 고향으로, 함께 보내는 국제소포</p>
+    <div class="fnav">
+      <a href="#why" data-i18n="nav.why">왜 저렴한가</a>
+      <a href="#gonggu" data-i18n="nav.gonggu">공동구매</a>
+      <a href="#how" data-i18n="nav.how">보내는 방법</a>
+      <a href="#track" data-i18n="nav.track">배송추적</a>
+      <a href="#safe" data-i18n="nav.safe">안전결제</a>
+      <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
+    </div>
+    <div class="credits">
+      <p data-i18n="demo.note">본 페이지는 서비스 소개용 시연 데모입니다. 거점명·수치·후기는 예시이며 실제 운영 데이터가 아닙니다.</p>
+      <p id="credits" style="margin-top:8px">이미지: Wikimedia Commons (CC BY 2.0) · 자세한 출처는 CREDITS.json</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일 하단 CTA -->
+<div class="mobicta"><a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="hero.cta1">소포 보내기</span></a></div>
+
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708c9a0e57033c07f0e0b58a75e9270/qrcode.min.js"></script>
+<script>
+/* ── 다국어 사전 — 코어 5(한국어 ko·영어 en·네팔어 ne·크메르어 km·베트남어 vi) + 인니 id·타갈로그 fil.
+   내부 주석: km/vi/id/fil/ne는 프로토타입용 실번역이며 정식 오픈 전 원어민 감수 필요(화면 비노출). ── */
+const I18N = {
+ "nav.why":{en:"Why cheaper",ne:"किन सस्तो?",km:"ហេតុអ្វីថោក?",vi:"Vì sao rẻ hơn",id:"Kenapa lebih murah",fil:"Bakit mas mura"},
+ "nav.gonggu":{en:"Group send",ne:"समूह पठाउने",km:"ផ្ញើជាក្រុម",vi:"Gửi chung",id:"Kirim bersama",fil:"Sabay magpadala"},
+ "nav.how":{en:"How to send",ne:"कसरी पठाउने",km:"របៀបផ្ញើ",vi:"Cách gửi",id:"Cara kirim",fil:"Paano magpadala"},
+ "nav.track":{en:"Tracking",ne:"ट्र्याकिङ",km:"តាមដាន",vi:"Theo dõi",id:"Lacak",fil:"Subaybayan"},
+ "nav.safe":{en:"Safe pay",ne:"सुरक्षित भुक्तानी",km:"ការទូទាត់សុវត្ថិភាព",vi:"Thanh toán an toàn",id:"Bayar aman",fil:"Ligtas na bayad"},
+ "nav.faq":{en:"FAQ",ne:"प्रश्नहरू",km:"សំណួរញឹកញាប់",vi:"Câu hỏi",id:"FAQ",fil:"FAQ"},
+ "hero.eyebrow":{en:"KOREA TO HOME · SHIP TOGETHER",ne:"कोरियाबाट घरतिर · सँगै पठाउने पार्सल",km:"ពីកូរ៉េទៅផ្ទះ · ផ្ញើជាមួយគ្នា",vi:"Từ Hàn Quốc về quê · Gửi cùng nhau",id:"Dari Korea ke kampung · Kirim bersama",fil:"Mula Korea pauwi · Sabay-sabay"},
+ "hero.title":{en:"Pool your parcels,<br>and shipping home costs less.",ne:"सँगै जम्मा गरेर पठाउँदा,<br>घरसम्मको ढुवानी सस्तो हुन्छ।",km:"ផ្ញើរួមគ្នា<br>ថ្លៃដឹកជញ្ជូនទៅផ្ទះកាន់តែថោក។",vi:"Gộp bưu kiện lại,<br>cước gửi về quê rẻ hơn.",id:"Gabungkan paketmu,<br>ongkos kirim ke kampung jadi lebih murah.",fil:"Pagsamahin ang mga parcel,<br>mas mura ang padala pauwi."},
+ "hero.sub":{en:"We gather parcels bound for the same industrial town and the same country and send them at once. The more people join, the lower the cost per box.",ne:"उही औद्योगिक क्षेत्र, उही देश जाने पार्सलहरू एकै ठाउँमा जम्मा गरेर एकैचोटि पठाउँछौं। जति धेरै मानिस मिल्छन्, प्रति बाकस ढुवानी उति सस्तो।",km:"យើងប្រមូលកញ្ចប់ដែលទៅឧស្សាហកម្មដដែល និងប្រទេសដដែល រួចផ្ញើម្តង។ អ្នកចូលរួមកាន់តែច្រើន ថ្លៃក្នុងមួយប្រអប់កាន់តែថោក។",vi:"Chúng tôi gom các bưu kiện cùng khu công nghiệp, cùng một nước rồi gửi một lần. Càng nhiều người tham gia, cước mỗi thùng càng rẻ.",id:"Kami mengumpulkan paket menuju kawasan industri dan negara yang sama, lalu mengirimnya sekaligus. Makin banyak yang ikut, makin murah biaya per kotak.",fil:"Tinitipon namin ang mga parcel papunta sa iisang lugar at bansa, tapos isang beses na ipapadala. Mas maraming sumali, mas mababa ang gastos kada kahon."},
+ "hero.cta1":{en:"Send a parcel",ne:"पार्सल पठाउनुहोस्",km:"ផ្ញើកញ្ចប់",vi:"Gửi bưu kiện",id:"Kirim paket",fil:"Magpadala ng parcel"},
+ "hero.cta2":{en:"Open group sends",ne:"चलिरहेका समूहहरू",km:"ក្រុមកំពុងបើក",vi:"Nhóm đang mở",id:"Grup yang terbuka",fil:"Mga bukás na grupo"},
+ "badge.escrow":{en:"Escrow-protected pay",ne:"सुरक्षित भुक्तानी (एस्क्रो)",km:"ការទូទាត់ការពារ (Escrow)",vi:"Thanh toán ký quỹ",id:"Bayar dengan escrow",fil:"Bayad na protektado (escrow)"},
+ "badge.escrow.d":{en:"Paid out only after delivery",ne:"प्राप्ति पुष्टि पछि मात्र भुक्तानी",km:"ទូទាត់តែពេលទទួលបានរួច",vi:"Chỉ trả sau khi nhận hàng",id:"Dibayar setelah barang diterima",fil:"Babayaran pagkatanggap"},
+ "badge.customs":{en:"Official customs & shipping",ne:"आधिकारिक भन्सार · आधिकारिक ढुवानी",km:"គយផ្លូវការ · ដឹកជញ្ជូនផ្លូវការ",vi:"Hải quan & vận chuyển chính thức",id:"Bea cukai & pengiriman resmi",fil:"Opisyal na customs at padala"},
+ "badge.customs.d":{en:"By licensed couriers & brokers",ne:"दर्ता कुरियर र भन्सार फर्मद्वारा",km:"ដោយក្រុមហ៊ុនដឹកជញ្ជូន និងគយមានអាជ្ញាប័ណ្ណ",vi:"Do hãng chuyển phát & đại lý hải quan có phép",id:"Oleh kurir & broker berlisensi",fil:"Ng lisensyadong courier at broker"},
+ "badge.track":{en:"Live tracking",ne:"प्रत्यक्ष ट्र्याकिङ",km:"តាមដានផ្ទាល់",vi:"Theo dõi trực tiếp",id:"Pelacakan langsung",fil:"Live na pagsubaybay"},
+ "badge.track.d":{en:"From booking to doorstep",ne:"बुकिङदेखि घरसम्म",km:"ពីការកក់រហូតដល់ផ្ទះ",vi:"Từ lúc đặt đến tận nhà",id:"Dari pesan sampai depan pintu",fil:"Mula booking hanggang pinto"},
+ "why.eyebrow":{en:"WHY IT'S CHEAPER",ne:"किन सस्तो हुन्छ",km:"ហេតុអ្វីថោកជាង",vi:"Vì sao rẻ hơn",id:"Kenapa lebih murah",fil:"Bakit mas mura"},
+ "why.title":{en:"We don't cut taxes — we pool shipments",ne:"कर घटाएको होइन, ढुवानी जम्मा गरेको",km:"យើងមិនកាត់ពន្ធទេ — យើងប្រមូលការដឹកជញ្ជូន",vi:"Không phải giảm thuế — chúng tôi gộp hàng",id:"Bukan memotong pajak — kami menggabungkan kiriman",fil:"Hindi pagbabawas ng buwis — pinagsasama namin ang padala"},
+ "why.body":{en:"There is only one way we lower the cost: gather parcels going to the same destination at one hub and ship them together. The more we gather, the lower the transport and handling cost per box.",ne:"ढुवानी सस्तो बनाउने तरिका एउटै हो — उही गन्तव्यमा जाने पार्सलहरू एउटै केन्द्रमा जम्मा गरी एकैचोटि पठाउने। जति धेरै जम्मा हुन्छ, प्रति बाकस ढुवानी खर्च उति घट्छ।",km:"មធ្យោបាយតែមួយគត់ដើម្បីបញ្ចុះថ្លៃ គឺប្រមូលកញ្ចប់ដែលទៅទិសដៅដដែលនៅមជ្ឈមណ្ឌលមួយ រួចផ្ញើជាមួយគ្នា។ ប្រមូលបានកាន់តែច្រើន ថ្លៃដឹក និងចាត់ចែងក្នុងមួយប្រអប់កាន់តែថោក។",vi:"Chỉ có một cách để giảm chi phí: gom các bưu kiện cùng điểm đến về một điểm rồi gửi chung. Gom càng nhiều, chi phí vận chuyển và xử lý mỗi thùng càng thấp.",id:"Hanya ada satu cara menurunkan biaya: mengumpulkan paket dengan tujuan sama di satu titik lalu mengirim bersama. Makin banyak terkumpul, makin rendah biaya transport dan penanganan per kotak.",fil:"Iisa lang ang paraan para bumaba ang gastos: tipunin ang mga parcel na iisa ang destinasyon sa isang hub at isabay ang padala. Mas marami ang natipon, mas mababa ang gastos sa transport at handling kada kahon."},
+ "why.p1.t":{en:"Pooling lowers the rate",ne:"जम्मा गर्दा सस्तो",km:"ការប្រមូលបញ្ចុះថ្លៃ",vi:"Gộp lại giúp rẻ hơn",id:"Menggabungkan menurunkan tarif",fil:"Nagpapamura ang pagsasama"},
+ "why.p1.d":{en:"Ship ten at once and the per-box cost drops.",ne:"दस वटा एकैचोटि पठाउँदा प्रति बाकस खर्च घट्छ।",km:"ផ្ញើដប់ក្នុងពេលតែមួយ ថ្លៃក្នុងមួយប្រអប់ធ្លាក់ចុះ។",vi:"Gửi mười thùng cùng lúc, chi phí mỗi thùng giảm.",id:"Kirim sepuluh sekaligus, biaya per kotak turun.",fil:"Magpadala ng sampu nang sabay, bababa ang gastos kada kahon."},
+ "why.p2.t":{en:"Nothing to do with taxes",ne:"करसँग सम्बन्ध छैन",km:"មិនពាក់ព័ន្ធនឹងពន្ធ",vi:"Không liên quan đến thuế",id:"Tidak ada kaitannya dengan pajak",fil:"Walang kinalaman sa buwis"},
+ "why.p2.d":{en:"Each parcel clears customs officially, declared at its true value under the sender's own personal customs code. Nothing is split or hidden.",ne:"प्रत्येक पार्सल आफ्नै व्यक्तिगत भन्सार कोडमा सही मूल्य घोषणा गरेर आधिकारिक रूपमा भन्सार हुन्छ। छुट्याएर वा लुकाएर पठाइँदैन।",km:"កញ្ចប់នីមួយៗឆ្លងកាត់គយផ្លូវការ ដោយប្រកាសតម្លៃពិតក្រោមលេខកូដគយផ្ទាល់ខ្លួនរបស់អ្នកផ្ញើ។ មិនបំបែក ឬលាក់ឡើយ។",vi:"Mỗi bưu kiện thông quan chính thức, khai đúng giá trị thật theo mã hải quan cá nhân của người gửi. Không chia nhỏ, không giấu giếm.",id:"Setiap paket melewati bea cukai secara resmi, dinyatakan sesuai nilai sebenarnya dengan kode bea cukai pribadi pengirim. Tidak dipecah atau disembunyikan.",fil:"Bawat parcel ay dumadaan sa opisyal na customs, idineklara sa totoong halaga gamit ang sariling personal customs code ng nagpadala. Walang hinahati o itinatago."},
+ "why.p3.t":{en:"Licensed partners ship it",ne:"दर्ता साझेदारले ढुवानी",km:"ដៃគូមានអាជ្ញាប័ណ្ណដឹកជញ្ជូន",vi:"Đối tác có phép vận chuyển",id:"Mitra berlisensi yang mengirim",fil:"Lisensyadong partner ang nagpapadala"},
+ "why.p3.d":{en:"Customs and delivery are handled by registered international couriers and customs brokers.",ne:"भन्सार र ढुवानी दर्ता भएका अन्तर्राष्ट्रिय कुरियर र भन्सार फर्मले गर्छन्।",km:"គយ និងការដឹកជញ្ជូនត្រូវបានចាត់ចែងដោយក្រុមហ៊ុនដឹកជញ្ជូនអន្តរជាតិ និងក្រុមហ៊ុនគយដែលបានចុះបញ្ជី។",vi:"Hải quan và giao hàng do các hãng chuyển phát quốc tế và đại lý hải quan đã đăng ký thực hiện.",id:"Bea cukai dan pengiriman ditangani oleh kurir internasional dan broker bea cukai terdaftar.",fil:"Ang customs at delivery ay hinahawakan ng rehistradong international courier at customs broker."},
+ "why.p4.d":{en:"Exact rates are measured, confirmed and published from a single industrial-town pilot.",ne:"सही दर एउटै औद्योगिक क्षेत्रको पाइलटमा नापेर तय र सार्वजनिक गरिन्छ।",km:"អត្រាពិតប្រាកដត្រូវវាស់ បញ្ជាក់ និងផ្សព្វផ្សាយពីការសាកល្បងក្នុងតំបន់ឧស្សាហកម្មតែមួយ។",vi:"Mức cước chính xác được đo, xác nhận và công bố từ một chương trình thử nghiệm tại một khu công nghiệp.",id:"Tarif pastinya diukur, dikonfirmasi, dan diumumkan dari pilot di satu kawasan industri.",fil:"Ang eksaktong singil ay sinusukat, kinukumpirma at inilalabas mula sa pilot sa isang industrial town."},
+ "why.callout":{en:"Gohyang never promises \"duty-free\" or \"tax savings.\" The only reason it's cheaper is that we pool shipments together.",ne:"गोहयाङले 'कर छुट' वा 'कर बचत' को वाचा गर्दैन। सस्तो हुनुको कारण केवल 'सँगै जम्मा गरेर पठाउनु' हो।",km:"Gohyang មិនដែលសន្យា «រួចពន្ធ» ឬ «សន្សំពន្ធ» ទេ។ ហេតុផលតែមួយគត់ដែលថោក គឺយើងផ្ញើរួមគ្នា។",vi:"Gohyang không bao giờ hứa \"miễn thuế\" hay \"tiết kiệm thuế\". Lý do duy nhất khiến nó rẻ hơn là chúng tôi gửi gộp cùng nhau.",id:"Gohyang tidak pernah menjanjikan \"bebas pajak\" atau \"hemat pajak\". Satu-satunya alasan lebih murah adalah karena kami mengirim bersama.",fil:"Hindi kailanman nangangako ang Gohyang ng \"duty-free\" o \"tax savings.\" Ang tanging dahilan kung bakit mas mura ay dahil sabay-sabay kaming nagpapadala."},
+ "gb.eyebrow":{en:"OPEN GROUP SENDS",ne:"चलिरहेका समूह पठाउने",km:"ក្រុមផ្ញើកំពុងបើក",vi:"Nhóm gửi đang mở",id:"Grup kirim yang terbuka",fil:"Bukás na group send"},
+ "gb.title":{en:"Send together from a hub near you",ne:"आफ्नै छिमेकको केन्द्रबाट सँगै पठाऔं",km:"ផ្ញើជាមួយគ្នាពីមជ្ឈមណ្ឌលនៅជិតអ្នក",vi:"Gửi chung từ điểm gom gần bạn",id:"Kirim bersama dari hub dekat Anda",fil:"Sabay magpadala mula sa hub malapit sa iyo"},
+ "gb.sub":{en:"Each hub collects parcels until its deadline. Join before it closes to ride along on this shipment.",ne:"प्रत्येक केन्द्रमा तोकिएको समयसम्म पार्सल जम्मा हुन्छ। समय अगावै सहभागी भए यही ढुवानीमा समावेश हुन्छ।",km:"មជ្ឈមណ្ឌលនីមួយៗប្រមូលកញ្ចប់រហូតដល់ពេលកំណត់។ ចូលរួមមុនពេលបិទ ដើម្បីជាប់ក្នុងការដឹកនេះ។",vi:"Mỗi điểm gom nhận bưu kiện đến hạn chót. Tham gia trước khi đóng để đi cùng chuyến này.",id:"Setiap hub mengumpulkan paket sampai batas waktu. Ikut sebelum ditutup agar masuk pengiriman ini.",fil:"Bawat hub ay tumitipon hanggang deadline. Sumali bago magsara para makasabay sa padalang ito."},
+ "filter.all":{en:"All",ne:"सबै",km:"ទាំងអស់",vi:"Tất cả",id:"Semua",fil:"Lahat"},
+ "filter.np":{en:"Nepal",ne:"नेपाल",km:"នេប៉ាល់",vi:"Nepal",id:"Nepal",fil:"Nepal"},
+ "filter.kh":{en:"Cambodia",ne:"कम्बोडिया",km:"កម្ពុជា",vi:"Campuchia",id:"Kamboja",fil:"Cambodia"},
+ "filter.vn":{en:"Vietnam (soon)",ne:"भियतनाम (चाँडै)",km:"វៀតណាម (ឆាប់ៗ)",vi:"Việt Nam (sắp)",id:"Vietnam (segera)",fil:"Vietnam (malapit na)"},
+ "gb.deadline":{en:"Closes in",ne:"समय बाँकी",km:"បិទក្នុង",vi:"Đóng sau",id:"Tutup dalam",fil:"Magsasara sa"},
+ "gb.gathered":{en:"Gathered",ne:"जम्मा वजन",km:"ប្រមូលបាន",vi:"Đã gom",id:"Terkumpul",fil:"Naipon"},
+ "gb.peopleUnit":{en:" people",ne:" जना",km:" នាក់",vi:" người",id:" orang",fil:" tao"},
+ "gb.join":{en:"Join & send",ne:"सँगै पठाउनुहोस्",km:"ចូលរួម & ផ្ញើ",vi:"Tham gia & gửi",id:"Gabung & kirim",fil:"Sumali & magpadala"},
+ "gb.closing":{en:"Closing soon",ne:"समय सकिँदै",km:"ជិតបិទ",vi:"Sắp đóng",id:"Segera tutup",fil:"Malapit nang magsara"},
+ "gb.destNp":{en:"To Nepal · pooled standard parcels",ne:"नेपालतर्फ · मानक पार्सल सँगै",km:"ទៅនេប៉ាល់ · កញ្ចប់ស្តង់ដារបញ្ចូលគ្នា",vi:"Đến Nepal · gộp bưu kiện tiêu chuẩn",id:"Ke Nepal · paket standar digabung",fil:"Papuntang Nepal · pinagsamang standard parcel"},
+ "gb.destKh":{en:"To Cambodia · pooled standard parcels",ne:"कम्बोडियातर्फ · मानक पार्सल सँगै",km:"ទៅកម្ពុជា · កញ្ចប់ស្តង់ដារបញ្ចូលគ្នា",vi:"Đến Campuchia · gộp bưu kiện tiêu chuẩn",id:"Ke Kamboja · paket standar digabung",fil:"Papuntang Cambodia · pinagsamang standard parcel"},
+ "card1.route":{en:"Hwaseong Hyangnam → Kathmandu",ne:"ह्वासोङ ह्याङनाम → काठमाडौं",km:"ហ្វាសុង ហ្យ៉ាងណាម → កាធមណ្ឌូ",vi:"Hwaseong Hyangnam → Kathmandu",id:"Hwaseong Hyangnam → Kathmandu",fil:"Hwaseong Hyangnam → Kathmandu"},
+ "card2.route":{en:"Ansan Wongok → Phnom Penh",ne:"आन्सान वोन्गोक → नोमपेन्ह",km:"អានសាន វុនកុក → ភ្នំពេញ",vi:"Ansan Wongok → Phnom Penh",id:"Ansan Wongok → Phnom Penh",fil:"Ansan Wongok → Phnom Penh"},
+ "card3.route":{en:"Gimhae → Kathmandu",ne:"गिमहे → काठमाडौं",km:"គីមហេ → កាធមណ្ឌូ",vi:"Gimhae → Kathmandu",id:"Gimhae → Kathmandu",fil:"Gimhae → Kathmandu"},
+ "card4.route":{en:"Siheung Jeongwang → Phnom Penh",ne:"सिहुङ जोङ्वाङ → नोमपेन्ह",km:"ស៊ីហឹង ជុងវ៉ាង → ភ្នំពេញ",vi:"Siheung Jeongwang → Phnom Penh",id:"Siheung Jeongwang → Phnom Penh",fil:"Siheung Jeongwang → Phnom Penh"},
+ "map.eyebrow":{en:"HUB MAP",ne:"केन्द्रको नक्सा",km:"ផែនទីមជ្ឈមណ្ឌល",vi:"Bản đồ điểm gom",id:"Peta hub",fil:"Mapa ng hub"},
+ "map.title":{en:"We collect near factory dormitories",ne:"कारखाना छात्रावास नजिकै सङ्कलन",km:"យើងប្រមូលនៅជិតអន្តេវាសិកដ្ឋានរោងចក្រ",vi:"Chúng tôi gom gần ký túc xá nhà máy",id:"Kami mengumpulkan dekat asrama pabrik",fil:"Nagtitipon kami malapit sa dormitoryo ng pabrika"},
+ "map.note":{en:"Map shows an example location. Actual hubs are set during the pilot.",ne:"नक्सा उदाहरण मात्र हो। वास्तविक केन्द्र पाइलटमा तय हुन्छ।",km:"ផែនទីបង្ហាញទីតាំងគំរូ។ មជ្ឈមណ្ឌលពិតកំណត់ក្នុងការសាកល្បង។",vi:"Bản đồ chỉ là ví dụ. Điểm gom thật sẽ chốt trong giai đoạn thử nghiệm.",id:"Peta hanya contoh lokasi. Hub sebenarnya ditentukan saat pilot.",fil:"Halimbawa lang ang lokasyon sa mapa. Ang tunay na hub ay itatakda sa pilot."},
+ "how.eyebrow":{en:"HOW TO SEND",ne:"कसरी पठाउने",km:"របៀបផ្ញើ",vi:"Cách gửi",id:"Cara kirim",fil:"Paano magpadala"},
+ "how.title":{en:"Six simple steps",ne:"छ चरणमा सकियो",km:"៦ ជំហានងាយៗ",vi:"Sáu bước đơn giản",id:"Enam langkah mudah",fil:"Anim na simpleng hakbang"},
+ "step1.t":{en:"Pick country & hub",ne:"देश र केन्द्र छान्नुहोस्",km:"ជ្រើសប្រទេស & មជ្ឈមណ្ឌល",vi:"Chọn nước & điểm gom",id:"Pilih negara & hub",fil:"Piliin ang bansa & hub"},
+ "step1.d":{en:"Choose your home country and a nearby hub.",ne:"घर देश र नजिकको सङ्कलन केन्द्र छान्नुहोस्।",km:"ជ្រើសប្រទេសកំណើត និងមជ្ឈមណ្ឌលនៅជិត។",vi:"Chọn quê hương và điểm gom gần bạn.",id:"Pilih negara asal dan hub terdekat.",fil:"Piliin ang bansang pinanggalingan at kalapit na hub."},
+ "step2.t":{en:"Enter items & weight",ne:"सामान र तौल लेख्नुहोस्",km:"បញ្ចូលទំនិញ & ទម្ងន់",vi:"Nhập món & cân nặng",id:"Isi barang & berat",fil:"Ilagay ang laman & timbang"},
+ "step2.d":{en:"Tell us what you're sending; we estimate the weight.",ne:"के पठाउने लेख्नुहोस्, तौल हामी गणना गर्छौं।",km:"ប្រាប់យើងនូវអ្វីដែលអ្នកផ្ញើ យើងគណនាទម្ងន់។",vi:"Cho biết bạn gửi gì; chúng tôi ước tính cân nặng.",id:"Beri tahu isinya; kami perkirakan beratnya.",fil:"Sabihin kung ano ang ipadadala; tatantiyahin namin ang bigat."},
+ "step3.t":{en:"Prohibited-item check",ne:"निषेधित वस्तु जाँच",km:"ត្រួតពិនិត្យវត្ថុហាមឃាត់",vi:"Kiểm tra hàng cấm",id:"Cek barang terlarang",fil:"Suri sa bawal na items"},
+ "step3.d":{en:"Items that can't ship are caught here.",ne:"पठाउन नमिल्ने वस्तु यही चरणमा रोकिन्छ।",km:"វត្ថុដែលផ្ញើមិនបានត្រូវរកឃើញនៅទីនេះ។",vi:"Những món không được gửi sẽ bị chặn ở đây.",id:"Barang yang tak boleh dikirim ketahuan di sini.",fil:"Nahuhuli dito ang mga bawal ipadala."},
+ "step4.t":{en:"See estimated cost",ne:"अनुमानित ढुवानी हेर्नुहोस्",km:"មើលថ្លៃប៉ាន់ស្មាន",vi:"Xem cước ước tính",id:"Lihat perkiraan biaya",fil:"Tingnan ang tinatayang gastos"},
+ "step4.d":{en:"See the pooled shipping estimate.",ne:"सँगै पठाउँदा घटेको अनुमानित ढुवानी देखिन्छ।",km:"មើលការប៉ាន់ស្មានថ្លៃដឹកពេលផ្ញើរួម។",vi:"Xem ước tính cước khi gửi gộp.",id:"Lihat perkiraan ongkir gabungan.",fil:"Tingnan ang tinatayang pinagsamang padala."},
+ "step5.t":{en:"Pay safely (escrow)",ne:"सुरक्षित भुक्तानी (एस्क्रो)",km:"ទូទាត់ដោយសុវត្ថិភាព (Escrow)",vi:"Thanh toán an toàn (ký quỹ)",id:"Bayar aman (escrow)",fil:"Magbayad nang ligtas (escrow)"},
+ "step5.d":{en:"Your payment is held safely until delivery is confirmed.",ne:"प्राप्ति पुष्टि नभएसम्म रकम सुरक्षित राखिन्छ।",km:"ប្រាក់របស់អ្នកត្រូវរក្សាទុកដោយសុវត្ថិភាព រហូតបញ្ជាក់ការទទួល។",vi:"Tiền của bạn được giữ an toàn đến khi xác nhận giao hàng.",id:"Uangmu disimpan aman sampai pengiriman dikonfirmasi.",fil:"Ligtas na hawak ang bayad hanggang makumpirma ang delivery."},
+ "step6.t":{en:"Drop-off & collection",ne:"पिकअप र सङ्कलन",km:"ដាក់ & ប្រមូល",vi:"Giao & gom hàng",id:"Antar & pengumpulan",fil:"Hulog & pagtipon"},
+ "step6.d":{en:"On the set day we collect at the hub and ship at once.",ne:"तोकिएको दिन केन्द्रमा जम्मा गरी एकैचोटि पठाइन्छ।",km:"នៅថ្ងៃកំណត់ យើងប្រមូលនៅមជ្ឈមណ្ឌល រួចផ្ញើម្តង។",vi:"Đúng ngày hẹn, chúng tôi gom tại điểm và gửi một lần.",id:"Pada hari yang ditentukan, kami kumpulkan di hub dan kirim sekaligus.",fil:"Sa takdang araw, titipunin sa hub at isang beses ipapadala."},
+ "ban.eyebrow":{en:"WHAT YOU CAN'T SEND",ne:"पठाउन नमिल्ने वस्तु",km:"អ្វីដែលផ្ញើមិនបាន",vi:"Những thứ không được gửi",id:"Yang tidak boleh dikirim",fil:"Hindi puwedeng ipadala"},
+ "ban.title":{en:"These are blocked automatically at send time",ne:"यी वस्तु पठाउने बेला स्वतः रोकिन्छ",km:"ទាំងនេះត្រូវបានរារាំងដោយស្វ័យប្រវត្តិពេលផ្ញើ",vi:"Những thứ này bị chặn tự động khi gửi",id:"Ini diblokir otomatis saat pengiriman",fil:"Awtomatikong hinaharang ang mga ito sa pagpapadala"},
+ "ban.i1":{en:"Meat & pork-containing foods",ne:"मासु, सुँगुरको मासु भएको खानेकुरा",km:"សាច់ & អាហារមានសាច់ជ្រូក",vi:"Thịt & thực phẩm có thịt heo",id:"Daging & makanan mengandung babi",fil:"Karne & pagkaing may baboy"},
+ "ban.i2":{en:"Fresh fruit & vegetables",ne:"ताजा फलफूल र तरकारी",km:"ផ្លែឈើ & បន្លែស្រស់",vi:"Trái cây & rau tươi",id:"Buah & sayur segar",fil:"Sariwang prutas & gulay"},
+ "ban.i3":{en:"Power banks & lithium batteries",ne:"पावर बैंक, लिथियम ब्याट्री",km:"ថ្មបម្រុង & ថ្មលីច្យូម",vi:"Sạc dự phòng & pin lithium",id:"Power bank & baterai litium",fil:"Power bank & lithium battery"},
+ "ban.i4":{en:"Medicines & supplements",ne:"औषधि र स्वास्थ्य पूरक",km:"ឱសថ & អាហារបំប៉ន",vi:"Thuốc & thực phẩm chức năng",id:"Obat & suplemen",fil:"Gamot & supplement"},
+ "ban.i5":{en:"Alcohol & tobacco",ne:"रक्सी र चुरोट",km:"គ្រឿងស្រវឹង & ថ្នាំជក់",vi:"Rượu bia & thuốc lá",id:"Alkohol & tembakau",fil:"Alak & tabako"},
+ "ban.i6":{en:"Cash & precious metals",ne:"नगद र बहुमूल्य धातु",km:"សាច់ប្រាក់ & លោហៈមានតម្លៃ",vi:"Tiền mặt & kim loại quý",id:"Uang tunai & logam mulia",fil:"Cash & mahahalagang metal"},
+ "ban.note":{en:"Rules vary by country. We check automatically at upload and warn you in advance about blocked items.",ne:"नियम देशअनुसार फरक हुन्छ। अपलोड गर्दा स्वतः जाँच गरी रोकिने वस्तु पहिल्यै जानकारी दिन्छौं।",km:"ច្បាប់ខុសគ្នាតាមប្រទេស។ យើងពិនិត្យស្វ័យប្រវត្តិពេលបញ្ចូល ហើយជូនដំណឹងជាមុនអំពីវត្ថុដែលរារាំង។",vi:"Quy định khác nhau theo từng nước. Chúng tôi kiểm tra tự động khi tải lên và báo trước những món bị chặn.",id:"Aturan berbeda tiap negara. Kami cek otomatis saat unggah dan memperingatkan lebih dulu soal barang yang diblokir.",fil:"Iba-iba ang patakaran kada bansa. Awtomatiko kaming nagche-check sa pag-upload at nagbababala nang maaga sa mga bawal."},
+ "tr.eyebrow":{en:"TRACKING",ne:"ट्र्याकिङ",km:"ការតាមដាន",vi:"Theo dõi",id:"Pelacakan",fil:"Pagsubaybay"},
+ "tr.title":{en:"From booking to doorstep, always visible",ne:"बुकिङदेखि घरसम्म, कहाँ छ थाहा हुन्छ",km:"ពីការកក់ដល់ផ្ទះ អ្នកឃើញជានិច្ច",vi:"Từ lúc đặt đến tận nhà, luôn thấy rõ",id:"Dari pesan sampai depan pintu, selalu terlihat",fil:"Mula booking hanggang pinto, laging nakikita"},
+ "tr.sample":{en:"Sample tracking no.",ne:"नमूना ट्र्याकिङ नम्बर",km:"លេខតាមដានគំរូ",vi:"Mã theo dõi mẫu",id:"Contoh no. pelacakan",fil:"Halimbawang tracking no."},
+ "t1":{en:"Booked",ne:"बुकिङ भयो",km:"បានកក់",vi:"Đã đặt",id:"Dipesan",fil:"Na-book"},
+ "t2":{en:"Collected at hub",ne:"केन्द्रमा सङ्कलन",km:"ប្រមូលនៅមជ្ឈមណ្ឌល",vi:"Đã gom tại điểm",id:"Terkumpul di hub",fil:"Natipon sa hub"},
+ "t3":{en:"Customs cleared",ne:"आधिकारिक भन्सार",km:"ឆ្លងគយរួច",vi:"Đã thông quan",id:"Lolos bea cukai",fil:"Nakalusot sa customs"},
+ "t4":{en:"In air transit",ne:"हवाई ढुवानी",km:"កំពុងដឹកតាមអាកាស",vi:"Đang vận chuyển hàng không",id:"Dalam transit udara",fil:"Nasa air transit"},
+ "t5":{en:"Arrived in country",ne:"गन्तव्य देश आइपुग्यो",km:"មកដល់ប្រទេស",vi:"Đã đến nước nhận",id:"Tiba di negara",fil:"Nakarating sa bansa"},
+ "t6":{en:"Delivered to door",ne:"घरमा पुर्‍याइयो",km:"ដឹកដល់ផ្ទះ",vi:"Đã giao tận nhà",id:"Diantar ke pintu",fil:"Naihatid sa pinto"},
+ "tr.status.done":{en:"Done",ne:"सम्पन्न",km:"រួចរាល់",vi:"Xong",id:"Selesai",fil:"Tapos"},
+ "tr.status.now":{en:"In progress",ne:"चलिरहेको",km:"កំពុងដំណើរការ",vi:"Đang xử lý",id:"Berlangsung",fil:"Isinasagawa"},
+ "tr.status.wait":{en:"Pending",ne:"पर्खँदै",km:"កំពុងរង់ចាំ",vi:"Chờ",id:"Menunggu",fil:"Naghihintay"},
+ "es.eyebrow":{en:"SAFE PAYMENT",ne:"सुरक्षित भुक्तानी",km:"ការទូទាត់សុវត្ថិភាព",vi:"Thanh toán an toàn",id:"Pembayaran aman",fil:"Ligtas na bayad"},
+ "es.title":{en:"Your money is held safely until delivery is done",ne:"ढुवानी नसकिएसम्म रकम सुरक्षित रहन्छ",km:"ប្រាក់របស់អ្នកត្រូវរក្សាទុកសុវត្ថិភាព រហូតដឹកជញ្ជូនរួច",vi:"Tiền của bạn được giữ an toàn cho đến khi giao xong",id:"Uangmu disimpan aman sampai pengiriman selesai",fil:"Ligtas na hawak ang pera mo hanggang matapos ang delivery"},
+ "es.body":{en:"Your payment is held by a licensed payment provider (PG). Gohyang never collects or holds your money itself. Funds are released only after the parcel arrives and receipt is confirmed.",ne:"तपाईंको रकम दर्ता भएको भुक्तानी सेवा (PG) ले सुरक्षित राख्छ। गोहयाङले तपाईंको पैसा आफैँ उठाउँदैन वा राख्दैन। पार्सल पुगेर प्राप्ति पुष्टि भएपछि मात्र भुक्तानी हुन्छ।",km:"ប្រាក់របស់អ្នកត្រូវរក្សាទុកដោយអ្នកផ្តល់សេវាទូទាត់មានអាជ្ញាប័ណ្ណ (PG)។ Gohyang មិនប្រមូល ឬកាន់ប្រាក់ដោយខ្លួនឯងទេ។ ប្រាក់ត្រូវបញ្ចេញតែក្រោយកញ្ចប់មកដល់ និងបញ្ជាក់ការទទួល។",vi:"Tiền của bạn do một đơn vị thanh toán có phép (PG) giữ. Gohyang không bao giờ tự thu hay giữ tiền của bạn. Tiền chỉ được giải ngân sau khi bưu kiện đến và xác nhận đã nhận.",id:"Pembayaranmu disimpan oleh penyedia pembayaran berlisensi (PG). Gohyang tidak pernah menagih atau menyimpan uangmu sendiri. Dana dicairkan hanya setelah paket tiba dan penerimaan dikonfirmasi.",fil:"Ang bayad mo ay hawak ng lisensyadong payment provider (PG). Hindi kailanman kinokolekta o hinahawakan ng Gohyang ang pera mo. Ilalabas lang ang pondo matapos dumating ang parcel at makumpirma ang pagtanggap."},
+ "es.p1":{en:"No cash is collected",ne:"नगद उठाइँदैन",km:"មិនប្រមូលសាច់ប្រាក់",vi:"Không thu tiền mặt",id:"Tidak ada uang tunai ditagih",fil:"Walang cash na kinokolekta"},
+ "es.p2":{en:"Handled by a licensed PG",ne:"दर्ता PG मार्फत",km:"គ្រប់គ្រងដោយ PG មានអាជ្ញាប័ណ្ណ",vi:"Do một PG có phép xử lý",id:"Ditangani PG berlisensi",fil:"Hinahawakan ng lisensyadong PG"},
+ "es.p3":{en:"Released after receipt",ne:"प्राप्ति पछि भुक्तानी",km:"បញ្ចេញក្រោយការទទួល",vi:"Giải ngân sau khi nhận",id:"Dicairkan setelah diterima",fil:"Ilalabas pagkatanggap"},
+ "es.why":{en:"This structurally prevents \"take the money and vanish\" scams.",ne:"त्यसैले 'पैसा लिएर हराउने' ठगी संरचनागत रूपमै रोकिन्छ।",km:"នេះការពារការឆបោក «យកលុយរួចបាត់» ជាលក្ខណៈរចនាសម្ព័ន្ធ។",vi:"Cách này ngăn tận gốc kiểu lừa \"cầm tiền rồi biến mất\".",id:"Ini secara struktural mencegah penipuan \"ambil uang lalu hilang\".",fil:"Istrukturang pinipigilan nito ang scam na \"kunin ang pera tapos maglaho\"."},
+ "ld.eyebrow":{en:"COMMUNITY LEADER",ne:"छिमेकी समूह लिडर",km:"មេដឹកនាំសហគមន៍",vi:"Trưởng nhóm cộng đồng",id:"Pemimpin komunitas",fil:"Lider ng komunidad"},
+ "ld.title":{en:"Help your neighbors send, and earn for it",ne:"छिमेकीको पठाउने काममा सहयोग गरी पुरस्कार",km:"ជួយអ្នកជិតខាងផ្ញើ ហើយទទួលបានរង្វាន់",vi:"Giúp hàng xóm gửi hàng và nhận thưởng",id:"Bantu tetangga mengirim, dan dapat imbalan",fil:"Tulungan ang kapitbahay magpadala, at kumita"},
+ "ld.body":{en:"Trusted people at places where neighbors gather — dorm interpreters, restaurants, faith groups — help run the group sends.",ne:"छात्रावासका दोभाषे, रेस्टुरेन्ट, धार्मिक भेला जस्ता छिमेकी भेला हुने ठाउँका भरपर्दो व्यक्तिले सहयोग गर्छन्।",km:"មនុស្សដែលទុកចិត្តនៅកន្លែងអ្នកជិតខាងជួបជុំ — អ្នកបកប្រែអន្តេវាសិកដ្ឋាន ភោជនីយដ្ឋាន ក្រុមសាសនា — ជួយដំណើរការការផ្ញើជាក្រុម។",vi:"Những người đáng tin ở nơi hàng xóm tụ họp — phiên dịch ký túc xá, quán ăn, nhóm tôn giáo — giúp điều hành việc gửi chung.",id:"Orang tepercaya di tempat tetangga berkumpul — penerjemah asrama, rumah makan, kelompok keagamaan — membantu menjalankan kirim bersama.",fil:"Mga mapagkakatiwalaang tao sa mga tipunan ng kapitbahay — interpreter sa dorm, karinderya, grupong panrelihiyon — ang tumutulong sa group send."},
+ "ld.rule":{en:"Leaders never collect cash. All payments go only through the app's escrow.",ne:"लिडरले नगद उठाउँदैनन्। सबै भुक्तानी एपको सुरक्षित भुक्तानीबाट मात्र हुन्छ।",km:"មេដឹកនាំមិនប្រមូលសាច់ប្រាក់ទេ។ ការទូទាត់ទាំងអស់ឆ្លងកាត់តែ Escrow របស់កម្មវិធី។",vi:"Trưởng nhóm không bao giờ thu tiền mặt. Mọi thanh toán chỉ qua ký quỹ của ứng dụng.",id:"Pemimpin tidak pernah menagih tunai. Semua pembayaran hanya lewat escrow aplikasi.",fil:"Hindi kailanman kumokolekta ng cash ang mga lider. Lahat ng bayad ay dumadaan lang sa escrow ng app."},
+ "rev.eyebrow":{en:"Early neighbors (sample)",ne:"पहिले प्रयोग गर्नेहरू (उदाहरण)",km:"អ្នកជិតខាងដំបូង (គំរូ)",vi:"Hàng xóm dùng sớm (mẫu)",id:"Tetangga awal (contoh)",fil:"Mga unang kapitbahay (sample)"},
+ "rev.title":{en:"Why trust grows",ne:"विश्वास बढ्नुको कारण",km:"ហេតុអ្វីទំនុកចិត្តកើនឡើង",vi:"Vì sao niềm tin lớn dần",id:"Kenapa kepercayaan tumbuh",fil:"Bakit lumalago ang tiwala"},
+ "rev1":{en:"“They don't take money up front — paid only on arrival. Reassuring.” — Nepal, Hyangnam",ne:"“पहिले पैसा नउठाउने, पुगेपछि मात्र भुक्तानी — ढुक्क लाग्यो।” — नेपाल, ह्याङनाम",km:"«មិនយកលុយមុន — ទូទាត់តែពេលមកដល់។ ធ្វើឲ្យស្ងប់ចិត្ត។» — នេប៉ាល់, ហ្យ៉ាងណាម",vi:"“Không thu tiền trước — chỉ trả khi hàng đến. Yên tâm.” — Nepal, Hyangnam",id:"“Tidak menagih di depan — dibayar setelah tiba. Menenangkan.” — Nepal, Hyangnam",fil:"“Walang bayad sa una — babayaran pagdating. Nakakapanatag.” — Nepal, Hyangnam"},
+ "rev2":{en:"“We used to send alone; sending together cut the cost.” — Cambodia, Wongok",ne:"“एक्लै पठाउने अब सँगै — ढुवानी घट्यो।” — कम्बोडिया, वोन्गोक",km:"«ធ្លាប់ផ្ញើម្នាក់ឯង ឥឡូវផ្ញើជាមួយគ្នា — ថ្លៃថយចុះ។» — កម្ពុជា, វុនកុក",vi:"“Trước gửi một mình; gửi chung nên rẻ hơn.” — Campuchia, Wongok",id:"“Dulu kirim sendiri; kirim bersama menekan biaya.” — Kamboja, Wongok",fil:"“Dati mag-isa; ang sabay na padala ay nagpamura.” — Cambodia, Wongok"},
+ "rev3":{en:"“It's in Nepali, so it was easy to understand.” — Nepal, Gimhae",ne:"“नेपालीमा भएकाले बुझ्न सजिलो भयो।” — नेपाल, गिमहे",km:"«វាជាភាសានេប៉ាល់ ដូច្នេះងាយយល់។» — នេប៉ាល់, គីមហេ",vi:"“Có tiếng Nepal nên dễ hiểu.” — Nepal, Gimhae",id:"“Ada bahasa Nepal, jadi mudah dipahami.” — Nepal, Gimhae",fil:"“Nasa Nepali, kaya madaling maintindihan.” — Nepal, Gimhae"},
+ "rv.badge":{en:"COMING SOON",ne:"चाँडै आउँदै",km:"ជិតមកដល់",vi:"Sắp ra mắt",id:"Segera hadir",fil:"Malapit nang dumating"},
+ "rv.title":{en:"Soon: pool your hometown flavors too",ne:"चाँडै, घरको स्वाद पनि सँगै",km:"ឆាប់ៗ៖ ប្រមូលរសជាតិស្រុកកំណើតផងដែរ",vi:"Sắp tới: gộp cả hương vị quê nhà",id:"Segera: gabungkan juga cita rasa kampung",fil:"Malapit na: pagsamahin din ang lasa ng bayan"},
+ "rv.body":{en:"We're preparing reverse group-buying to order hometown foods and specialties into Korea.",ne:"घरको खाना र विशेष उत्पादन कोरियामा सँगै किन्ने उल्टो सामूहिक किनमेल तयारीमा छ।",km:"យើងកំពុងរៀបចំការទិញជាក្រុមបញ្ច្រាស ដើម្បីកម្ម៉ង់អាហារ និងផលិតផលពិសេសស្រុកកំណើតចូលកូរ៉េ។",vi:"Chúng tôi đang chuẩn bị mua chung chiều ngược lại để đặt món và đặc sản quê về Hàn Quốc.",id:"Kami menyiapkan belanja grup arah balik untuk memesan makanan dan produk khas kampung ke Korea.",fil:"Inihahanda namin ang paatras na group-buy para mag-order ng pagkain at specialty ng bayan papuntang Korea."},
+ "faq.eyebrow":{en:"FAQ",ne:"प्रायः सोधिने प्रश्न",km:"សំណួរញឹកញាប់",vi:"Câu hỏi thường gặp",id:"Pertanyaan umum",fil:"Mga tanong"},
+ "faq.title":{en:"Your questions, answered",ne:"तपाईंका प्रश्नहरू",km:"សំណួររបស់អ្នក ត្រូវបានឆ្លើយ",vi:"Giải đáp thắc mắc",id:"Pertanyaanmu, terjawab",fil:"Mga tanong mo, nasagot"},
+ "faq.q1":{en:"Is it really cheaper?",ne:"साँच्चै सस्तो हो?",km:"តើវាថោកមែនទេ?",vi:"Có thật sự rẻ hơn không?",id:"Apa benar lebih murah?",fil:"Talaga bang mas mura?"},
+ "faq.a1":{en:"Because many people ship together at once. The exact savings will be confirmed and published from the industrial-town pilot.",ne:"धेरै जना मिलेर एकैचोटि पठाएकाले हो। सही बचत रकम पाइलटमा तय गरी सार्वजनिक गरिन्छ।",km:"ព្រោះមនុស្សច្រើននាក់ផ្ញើជាមួយគ្នាម្តង។ ចំនួនសន្សំពិតប្រាកដនឹងបញ្ជាក់ និងផ្សព្វផ្សាយពីការសាកល្បង។",vi:"Vì nhiều người cùng gửi một lần. Mức tiết kiệm chính xác sẽ được xác nhận và công bố từ chương trình thử nghiệm.",id:"Karena banyak orang mengirim bersama sekaligus. Penghematan pastinya akan dikonfirmasi dan diumumkan dari pilot.",fil:"Dahil maraming tao ang sabay na nagpapadala. Ang eksaktong tipid ay kukumpirmahin at ilalabas mula sa pilot."},
+ "faq.q2":{en:"Is this about saving tax?",ne:"के यो कर बचत हो?",km:"តើនេះជាការសន្សំពន្ធឬ?",vi:"Đây có phải để né thuế?",id:"Apakah ini soal menghemat pajak?",fil:"Tungkol ba ito sa pagtitipid ng buwis?"},
+ "faq.a2":{en:"No. Each parcel clears customs officially, declared at true value under your own personal customs code.",ne:"होइन। प्रत्येक पार्सल आफ्नै भन्सार कोडमा सही मूल्य घोषणा गरी आधिकारिक भन्सार हुन्छ।",km:"ទេ។ កញ្ចប់នីមួយៗឆ្លងគយផ្លូវការ ដោយប្រកាសតម្លៃពិតក្រោមលេខកូដគយផ្ទាល់ខ្លួន។",vi:"Không. Mỗi bưu kiện thông quan chính thức, khai đúng giá trị theo mã hải quan cá nhân của bạn.",id:"Tidak. Setiap paket melewati bea cukai resmi, dinyatakan sesuai nilai sebenarnya dengan kode bea cukai pribadimu.",fil:"Hindi. Bawat parcel ay dumadaan sa opisyal na customs, idineklara sa totoong halaga gamit ang sarili mong customs code."},
+ "faq.q3":{en:"What if my parcel goes missing?",ne:"सामान हरायो भने?",km:"បើកញ្ចប់បាត់ ធ្វើម៉េច?",vi:"Lỡ mất bưu kiện thì sao?",id:"Bagaimana jika paket hilang?",fil:"Paano kung mawala ang parcel?"},
+ "faq.a3":{en:"Your payment stays with the PG until receipt is confirmed. Customs and delivery are the responsibility of licensed couriers and brokers.",ne:"प्राप्ति पुष्टि नभएसम्म रकम PG ले सुरक्षित राख्छ। भन्सार र ढुवानीको जिम्मा दर्ता कुरियर र भन्सार फर्मको हुन्छ।",km:"ប្រាក់របស់អ្នកនៅជាមួយ PG រហូតបញ្ជាក់ការទទួល។ គយ និងការដឹកជញ្ជូនជាទំនួលខុសត្រូវរបស់ក្រុមហ៊ុនមានអាជ្ញាប័ណ្ណ។",vi:"Tiền của bạn nằm ở PG cho đến khi xác nhận đã nhận. Hải quan và giao hàng do hãng chuyển phát và đại lý có phép chịu trách nhiệm.",id:"Pembayaranmu tetap di PG sampai penerimaan dikonfirmasi. Bea cukai dan pengiriman jadi tanggung jawab kurir dan broker berlisensi.",fil:"Nananatili sa PG ang bayad mo hanggang makumpirma ang pagtanggap. Ang customs at delivery ay responsibilidad ng lisensyadong courier at broker."},
+ "faq.q4":{en:"What can't I send?",ne:"के पठाउन मिल्दैन?",km:"អ្វីខ្លះផ្ញើមិនបាន?",vi:"Tôi không được gửi gì?",id:"Apa yang tak boleh saya kirim?",fil:"Ano ang bawal kong ipadala?"},
+ "faq.a4":{en:"Meat and pork foods, fresh fruit, lithium batteries, medicines and more are blocked at send time.",ne:"मासु, सुँगुरको खाना, ताजा फलफूल, लिथियम ब्याट्री, औषधि आदि पठाउने बेला रोकिन्छ।",km:"សាច់ អាហារសាច់ជ្រូក ផ្លែឈើស្រស់ ថ្មលីច្យូម ឱសថ ជាដើម ត្រូវរារាំងពេលផ្ញើ។",vi:"Thịt và thực phẩm thịt heo, trái cây tươi, pin lithium, thuốc và nhiều thứ khác bị chặn khi gửi.",id:"Daging dan makanan babi, buah segar, baterai litium, obat, dan lainnya diblokir saat pengiriman.",fil:"Karne at pagkaing baboy, sariwang prutas, lithium battery, gamot at iba pa ay hinaharang sa pagpapadala."},
+ "ab.eyebrow":{en:"ABOUT GOHYANG",ne:"गोहयाङ बारे",km:"អំពី Gohyang",vi:"Về Gohyang",id:"Tentang Gohyang",fil:"Tungkol sa Gohyang"},
+ "ab.title":{en:"Connecting migrant workers in Korea with home",ne:"कोरियामा बस्ने आप्रवासी कामदार र घरलाई जोड्छौं",km:"ភ្ជាប់កម្មករចំណាកស្រុកនៅកូរ៉េជាមួយស្រុកកំណើត",vi:"Kết nối lao động nhập cư tại Hàn với quê nhà",id:"Menghubungkan pekerja migran di Korea dengan kampung halaman",fil:"Ikinokonekta ang mga migranteng manggagawa sa Korea sa kanilang bayan"},
+ "ab.body":{en:"Gohyang is a team building a group-buying international parcel service. Customs and transport are handled by registered partners; payments by a licensed PG.",ne:"गोहयाङ सामूहिक अन्तर्राष्ट्रिय पार्सल सेवा तयार गर्ने टोली हो। भन्सार र ढुवानी दर्ता साझेदारले, भुक्तानी दर्ता PG ले गर्छ।",km:"Gohyang ជាក្រុមកសាងសេវាកញ្ចប់អន្តរជាតិទិញជាក្រុម។ គយ និងការដឹកជញ្ជូនធ្វើដោយដៃគូចុះបញ្ជី ការទូទាត់ដោយ PG មានអាជ្ញាប័ណ្ណ។",vi:"Gohyang là nhóm đang xây dịch vụ bưu kiện quốc tế mua chung. Hải quan và vận chuyển do đối tác đã đăng ký; thanh toán qua PG có phép.",id:"Gohyang adalah tim yang membangun layanan paket internasional belanja grup. Bea cukai dan transportasi ditangani mitra terdaftar; pembayaran oleh PG berlisensi.",fil:"Ang Gohyang ay pangkat na bumubuo ng group-buying international parcel service. Ang customs at transport ay hinahawakan ng rehistradong partner; ang bayad ay sa lisensyadong PG."},
+ "ab.compliance":{en:"COMPLIANCE PRINCIPLES",ne:"नियम पालना सिद्धान्त",km:"គោលការណ៍អនុលោមភាព",vi:"Nguyên tắc tuân thủ",id:"Prinsip kepatuhan",fil:"Mga prinsipyo ng pagsunod"},
+ "ab.c1":{en:"Official customs, always",ne:"आधिकारिक भन्सार सिद्धान्त",km:"គយផ្លូវការជានិច្ច",vi:"Luôn thông quan chính thức",id:"Selalu bea cukai resmi",fil:"Palaging opisyal na customs"},
+ "ab.c2":{en:"Personal code, true-value declaration",ne:"भन्सार कोड र सही मूल्य घोषणा",km:"លេខកូដផ្ទាល់ខ្លួន ប្រកាសតម្លៃពិត",vi:"Mã cá nhân, khai đúng giá trị",id:"Kode pribadi, deklarasi nilai sebenarnya",fil:"Personal code, tunay na halaga"},
+ "ab.c3":{en:"No duty-free claims",ne:"कर छुटको दाबी छैन",km:"គ្មានការអះអាងរួចពន្ធ",vi:"Không tuyên bố miễn thuế",id:"Tanpa klaim bebas pajak",fil:"Walang duty-free na claim"},
+ "ab.c4":{en:"Prohibited items blocked",ne:"निषेधित वस्तु रोकिन्छ",km:"វត្ថុហាមឃាត់ត្រូវរារាំង",vi:"Chặn hàng cấm",id:"Barang terlarang diblokir",fil:"Hinaharang ang bawal na items"},
+ "qr.title":{en:"Share on your phone",ne:"मोबाइलमा सेयर गर्नुहोस्",km:"ចែករំលែកតាមទូរស័ព្ទ",vi:"Chia sẻ trên điện thoại",id:"Bagikan di ponsel",fil:"Ibahagi sa telepono"},
+ "qr.d":{en:"Scan the QR to open this page.",ne:"QR स्क्यान गर्दा यो पृष्ठ खुल्छ।",km:"ស្កេន QR ដើម្បីបើកទំព័រនេះ។",vi:"Quét QR để mở trang này.",id:"Pindai QR untuk membuka halaman ini.",fil:"I-scan ang QR para buksan ang pahinang ito."},
+ "demo.note":{en:"This page is a demo for introducing the service. Hub names, figures and reviews are examples, not real operating data.",ne:"यो पृष्ठ सेवा परिचयको डेमो हो। केन्द्रको नाम, तथ्याङ्क र समीक्षा उदाहरण मात्र हुन्, वास्तविक तथ्याङ्क होइनन्।",km:"ទំព័រនេះជាការបង្ហាញសាកល្បងសេវាកម្ម។ ឈ្មោះមជ្ឈមណ្ឌល តួលេខ និងការវាយតម្លៃ ជាគំរូ មិនមែនទិន្នន័យប្រតិបត្តិការពិត។",vi:"Trang này là bản demo giới thiệu dịch vụ. Tên điểm gom, số liệu và đánh giá chỉ là ví dụ, không phải dữ liệu vận hành thật.",id:"Halaman ini demo untuk memperkenalkan layanan. Nama hub, angka, dan ulasan hanya contoh, bukan data operasi nyata.",fil:"Ang pahinang ito ay demo para ipakilala ang serbisyo. Ang pangalan ng hub, mga numero at review ay halimbawa lang, hindi tunay na datos."},
+ "foot.tag":{en:"Korea to home, shipped together",ne:"कोरियाबाट घरतिर, सँगै पठाउने पार्सल",km:"ពីកូរ៉េទៅផ្ទះ ផ្ញើជាមួយគ្នា",vi:"Từ Hàn Quốc về quê, gửi cùng nhau",id:"Dari Korea ke kampung, dikirim bersama",fil:"Mula Korea pauwi, sabay-sabay na padala"}
+};
+const SUPPORTED=["ko","en","ne","km","vi","id","fil"];
+
+/* 한국어 원문 저장(되돌리기용) */
+document.querySelectorAll('[data-i18n]').forEach(el=>{el.dataset.ko=el.innerHTML;});
+function applyLang(lang){
+ if(SUPPORTED.indexOf(lang)<0) lang="en";
+ document.documentElement.lang=lang;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{
+   const k=el.getAttribute('data-i18n');
+   if(lang==="ko"){el.innerHTML=el.dataset.ko;return;}
+   const rec=I18N[k];
+   const v=rec&&(rec[lang]!==undefined?rec[lang]:rec.en);
+   el.innerHTML=(v!==undefined&&v!==null?v:el.dataset.ko);
+ });
+ const sel=document.getElementById('langsel'); if(sel) sel.value=lang;
+ try{localStorage.setItem('gh_lang',lang);}catch(e){}
+}
+function detectLang(){
+ try{var s=localStorage.getItem('gh_lang'); if(s&&SUPPORTED.indexOf(s)>=0) return s;}catch(e){}
+ var navs=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||"en"];
+ for(var i=0;i<navs.length;i++){
+   var p=(navs[i]||"").toLowerCase();
+   if(p.indexOf("ne")===0) return "ne";
+   if(p.indexOf("km")===0) return "km";
+   if(p.indexOf("vi")===0) return "vi";
+   if(p.indexOf("id")===0||p.indexOf("in")===0) return "id";
+   if(p.indexOf("fil")===0||p.indexOf("tl")===0) return "fil";
+   if(p.indexOf("ko")===0) return "ko";
+   if(p.indexOf("en")===0) return "en";
+ }
+ return "en"; /* 한국어 강제 기본 금지 — 미감지 시 영어 */
+}
+document.getElementById('langsel').addEventListener('change',function(){applyLang(this.value);});
+applyLang(detectLang());
+
+/* ── 마감 카운트다운 ── */
+const two=n=>String(n).padStart(2,'0');
+function tick(){
+ const now=Date.now();
+ document.querySelectorAll('.clk[data-deadline]').forEach(el=>{
+   if(!el._t){el._t=now+parseInt(el.dataset.deadline,10)*3600*1000;}
+   let s=Math.max(0,Math.floor((el._t-now)/1000));
+   const d=Math.floor(s/86400);s-=d*86400;
+   const h=Math.floor(s/3600);s-=h*3600;
+   const m=Math.floor(s/60);const ss=s-m*60;
+   el.textContent=(d>0?d+'d ':'')+two(h)+':'+two(m)+':'+two(ss);
+ });
+}
+tick();setInterval(tick,1000);
+
+/* ── 국가 필터 ── */
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+ c.classList.add('on');
+ const f=c.dataset.filter;
+ document.querySelectorAll('.gb').forEach(card=>{
+   card.style.display=(f==='all'||card.dataset.country===f)?'':'none';
+ });
+}));
+
+/* ── 실제 QR (현재 페이지 URL) ── */
+(function(){
+ try{
+   var url=location.href.split('#')[0];
+   if(window.QRCode){ new QRCode(document.getElementById('qrcode'),{text:url,width:126,height:126,colorDark:'#17324D',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M}); }
+ }catch(e){}
+})();
+
+/* ── 이미지 출처(CREDITS.json) ── */
+fetch('images/CREDITS.json').then(r=>r.json()).then(cs=>{
+ const t=cs.map(c=>`${c.author} (${c.license})`).join(' · ');
+ document.getElementById('credits').textContent='이미지 출처: '+t+' — via Wikimedia Commons';
+}).catch(()=>{});
+</script>
+</body>
+</html>
