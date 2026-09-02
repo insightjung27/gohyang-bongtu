@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700;800&display=swap">
+<!-- 실제 지도: Leaflet + OpenStreetMap 래스터 타일(키·WebGL 불필요) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
   /* 언어별 폰트 — 한국어=Pretendard, 나머지=Noto(문자별 커버리지) */
   html[lang="ne"] body, html[lang="ne"] .t-display, html[lang="ne"] .t-h1, html[lang="ne"] .t-h2, html[lang="ne"] .t-h3, html[lang="ne"] .t-button, html[lang="ne"] .btn{font-family:'Noto Sans Devanagari','Noto Sans',sans-serif}
@@ -108,7 +110,9 @@
 
   /* 지도 */
   .map-frame{border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 10px 30px -18px rgba(23,50,77,.4)}
-  .map-frame iframe{display:block;width:100%;height:380px;border:0}
+  .map-frame #hubmap{display:block;width:100%;height:400px;background:var(--seed-50)}
+  .leaflet-container{font-family:var(--font-sans)}
+  .hubpin{background:var(--color-accentStrong);color:#fff;border:2px solid #fff;border-radius:var(--radius-pill);padding:5px 11px;font-size:12.5px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px -4px rgba(23,50,77,.5)}
 
   /* HOW 스텝 타임라인 */
   .steps{position:relative;max-width:760px;margin:0 auto}
@@ -387,7 +391,7 @@
       <h2 class="t-h2" data-i18n="map.title">공단 기숙사 가까운 곳에서 집하합니다</h2>
     </div>
     <div class="map-frame">
-      <iframe title="집하 거점 예시 지도 (화성 향남공단 일대)" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=126.86%2C37.05%2C127.02%2C37.14&layer=mapnik&marker=37.0955%2C126.9385"></iframe>
+      <div id="hubmap" role="img" aria-label="집하 거점 예시 지도: 화성 향남공단·안산 원곡동·시흥 정왕동·김해"></div>
     </div>
     <p class="t-caption center" style="margin-top:14px" data-i18n="map.note">지도는 예시 위치입니다. 실제 거점은 파일럿에서 확정합니다.</p>
   </div>
@@ -620,6 +624,7 @@
 <div class="mobicta"><a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="hero.cta1">소포 보내기</span></a></div>
 
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708c9a0e57033c07f0e0b58a75e9270/qrcode.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ── 다국어 사전 — 코어 5(한국어 ko·영어 en·네팔어 ne·크메르어 km·베트남어 vi) + 인니 id·타갈로그 fil.
    내부 주석: km/vi/id/fil/ne는 프로토타입용 실번역이며 정식 오픈 전 원어민 감수 필요(화면 비노출). ── */
@@ -816,6 +821,29 @@ document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
  try{
    var url=location.href.split('#')[0];
    if(window.QRCode){ new QRCode(document.getElementById('qrcode'),{text:url,width:126,height:126,colorDark:'#17324D',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M}); }
+ }catch(e){}
+})();
+
+/* ── 실제 지도(Leaflet + OSM 래스터) · 집하 거점 예시 마커 ── */
+(function(){
+ try{
+   if(!window.L) return;
+   var hubs=[
+     [37.0955,126.9385,"화성 향남공단"],
+     [37.3312,126.8074,"안산 원곡동"],
+     [37.3499,126.7358,"시흥 정왕동"],
+     [35.2285,128.8894,"김해"]
+   ];
+   var map=L.map('hubmap',{scrollWheelZoom:false,attributionControl:true}).setView([36.6,127.4],7);
+   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+     maxZoom:18, attribution:'© OpenStreetMap contributors'
+   }).addTo(map);
+   var b=[];
+   hubs.forEach(function(h){
+     L.marker([h[0],h[1]],{icon:L.divIcon({className:'',html:'<div class="hubpin">'+h[2]+'</div>',iconSize:null})}).addTo(map);
+     b.push([h[0],h[1]]);
+   });
+   map.fitBounds(b,{padding:[50,50]});
  }catch(e){}
 })();
 
