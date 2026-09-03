@@ -16,6 +16,11 @@ html[lang="vi"] button, html[lang="en"] button, html[lang="id"] button, html[lan
 .acct-btn .who{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acct-btn:hover{border-color:var(--color-seed)}
 .acct-btn:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
+/* 좁은 화면: 헤더 가로 넘침 방지 — 계정 버튼 아이콘 전용(라벨 숨김) */
+@media(max-width:760px){
+  .acct-btn{padding:9px 11px;max-width:none}
+  .acct-btn .who{display:none}
+}
 
 /* ── 데모 배지/리본 ── */
 .demo-chip{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--color-accent) 14%,#fff);color:var(--color-accentText);border:1px solid color-mix(in srgb,var(--color-accent) 40%,#fff);border-radius:var(--radius-pill);padding:4px 11px;font-size:11.5px;font-weight:800;letter-spacing:.03em;line-height:1}
@@ -132,11 +137,11 @@ body.modal-open{overflow:hidden}
 .batch-opt{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--color-border);padding:14px 4px;cursor:pointer;background:transparent;text-align:left;font-family:var(--font-sans);width:100%}
 .batch-opt .bfl{font-size:22px;flex:none}
 .batch-opt .bmain{flex:1;min-width:0}
-.batch-opt .brt{font-weight:700;font-size:14.5px;color:var(--color-ink);letter-spacing:-.01em}
-.batch-opt .bsub{font-size:12px;color:var(--color-muted);margin-top:2px}
+.batch-opt .brt{display:block;font-weight:700;font-size:14.5px;color:var(--color-ink);letter-spacing:-.01em}
+.batch-opt .bsub{display:block;font-size:12px;color:var(--color-muted);margin-top:3px}
 .batch-opt .bdl{flex:none;text-align:right}
-.batch-opt .bdl .bt{font-size:11px;color:var(--color-muted);font-weight:600}
-.batch-opt .bdl .clk{font-variant-numeric:tabular-nums;font-weight:800;font-size:14px;color:var(--color-accentText)}
+.batch-opt .bdl .bt{display:block;font-size:11px;color:var(--color-muted);font-weight:600}
+.batch-opt .bdl .clk{display:block;margin-top:2px;font-variant-numeric:tabular-nums;font-weight:800;font-size:14px;color:var(--color-accentText)}
 .batch-opt .radio{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--color-border);display:grid;place-items:center}
 .batch-opt.on{background:var(--seed-50)}
 .batch-opt.on .radio{border-color:var(--color-seed)}
@@ -262,10 +267,11 @@ body.modal-open{overflow:hidden}
 /* 지도 팝업 내 배치 */
 .leaflet-popup-content{margin:12px 14px;font-family:var(--font-sans)}
 .pop-hub{font-weight:800;font-size:14px;color:var(--color-ink);margin-bottom:8px}
-.pop-batch{display:block;border-top:1px solid var(--color-border);padding:9px 0}
-.pop-batch .pr{font-weight:700;font-size:13px;color:var(--color-seed)}
-.pop-batch .ps{font-size:11.5px;color:var(--color-muted);margin-top:2px}
-.pop-batch .pjoin{margin-top:7px;display:inline-flex;align-items:center;justify-content:center;background:var(--color-accentStrong);color:#fff;border:0;border-radius:var(--radius-pill);padding:7px 14px;font-family:var(--font-sans);font-weight:700;font-size:12.5px;cursor:pointer}
+.pop-batch{display:block;border-top:1px solid var(--color-border);padding:10px 0}
+.pop-batch .pr{display:block;font-weight:700;font-size:13px;color:var(--color-seed);line-height:1.4}
+.pop-batch .ps{display:block;font-size:11.5px;color:var(--color-muted);margin-top:3px}
+.pop-batch .pop-join{margin-top:9px;display:inline-flex;align-items:center;justify-content:center;background:var(--color-accentStrong);color:#fff;border:0;border-radius:var(--radius-pill);padding:7px 15px;font-family:var(--font-sans);font-weight:700;font-size:12.5px;cursor:pointer}
+.pop-batch .pop-join:hover{background:var(--color-accent)}
 .pop-none{font-size:12px;color:var(--color-muted)}
 
 /* 숫자 큰 값/긴 텍스트 방어 */

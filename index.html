@@ -27,6 +27,8 @@
   html[lang="vi"] .btn, html[lang="en"] .btn, html[lang="id"] .btn, html[lang="fil"] .btn{font-family:'Noto Sans',-apple-system,BlinkMacSystemFont,sans-serif}
   .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
   a{color:inherit;text-decoration:none}
+  /* 한국어 등 CJK: 어절 단위 줄바꿈(단어 중간 끊김 방지) — 긴 식별자는 .qv/.rb-v 등에서 overflow-wrap로 처리 */
+  body{word-break:keep-all}
   .center{text-align:center}
   .eyebrow-line{display:inline-flex;align-items:center;gap:10px}
   .eyebrow-line::before{content:"";width:26px;height:2px;background:var(--color-accent);display:inline-block}
@@ -34,15 +36,15 @@
   /* ── 헤더 ── */
   header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--color-bg) 90%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-border)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
-  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--color-ink);font-size:20px;letter-spacing:-.01em;white-space:nowrap}
-  .brand .mark{width:34px;height:34px;border-radius:9px;background:var(--color-seed);display:grid;place-items:center;flex:none}
-  .brand .mark svg{width:20px;height:20px}
-  .brand small{display:block;font-size:11px;font-weight:600;color:var(--color-muted);letter-spacing:.14em;margin-top:1px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--color-ink);font-size:21px;letter-spacing:-.02em;white-space:nowrap}
+  .brand .mark{width:36px;height:36px;border-radius:10px;background:var(--color-seed);display:grid;place-items:center;flex:none;color:#fff}
+  .brand .mark svg{width:23px;height:23px}
+  .brand .env-fold{stroke:#F3C9B4}
   .menu{display:flex;align-items:center;gap:26px;color:var(--color-muted);font-weight:600;font-size:14.5px}
   .menu a:hover{color:var(--color-ink)}
   .langwrap{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--color-seed);border-radius:var(--radius-pill);padding:0 6px 0 12px;background:var(--color-surface);color:var(--color-seed)}
   .langwrap .globe{width:18px;height:18px;flex:none}
-  #langsel{border:0;background:transparent;font-family:var(--font-sans);font-size:14px;font-weight:700;color:var(--color-seed);cursor:pointer;padding:9px 4px;line-height:1;-webkit-appearance:none;appearance:none}
+  #langsel{border:0;background:transparent;font-family:var(--font-sans);font-size:14px;font-weight:700;color:var(--color-seed);cursor:pointer;padding:9px 4px;line-height:1;-webkit-appearance:none;appearance:none;max-width:118px;text-overflow:ellipsis}
   #langsel:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
   .head-right{display:flex;align-items:center;gap:16px}
 
@@ -93,7 +95,7 @@
   .chip{border:1.5px solid var(--color-border);background:var(--color-surface);border-radius:var(--radius-pill);padding:9px 18px;font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--color-muted);cursor:pointer}
   .chip.on{background:var(--color-seed);color:#fff;border-color:var(--color-seed)}
   .gb-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .gb{position:relative;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:24px 24px 22px;border-left:4px solid var(--color-accent);overflow:hidden}
+  .gb{position:relative;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:24px 24px 22px;border-left:4px solid var(--color-accent);overflow:hidden}
   .gb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
   .gb .flag{font-size:26px;line-height:1}
   .gb .route{font-weight:700;font-size:17px;color:var(--color-ink);letter-spacing:-.01em}
@@ -102,12 +104,12 @@
   .timer .lab{font-size:11px;color:var(--color-muted);font-weight:600;letter-spacing:.04em}
   .timer .clk{font-variant-numeric:tabular-nums;font-weight:800;font-size:19px;color:var(--color-accentText);letter-spacing:.02em}
   .soon{display:inline-block;margin-top:4px;background:color-mix(in srgb,var(--color-accent) 14%,#fff);color:var(--color-accentText);font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--radius-pill)}
-  .meter{margin-top:6px}
+  .meter{margin-top:6px;margin-bottom:18px}
   .meter .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
   .meter .row b{color:var(--color-ink)}
   .bar{height:8px;background:var(--color-border);border-radius:var(--radius-pill);overflow:hidden}
   .bar>i{display:block;height:100%;background:var(--color-seed);border-radius:var(--radius-pill)}
-  .gb .btn{width:100%;margin-top:18px}
+  .gb .btn{width:100%;margin-top:auto}
 
   /* 지도 */
   .map-frame{border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 10px 30px -18px rgba(23,50,77,.4)}
@@ -196,7 +198,7 @@
   /* 푸터 */
   footer{background:var(--color-ink);color:#B9C4CF;padding:60px 0 120px}
   footer .brand{color:#fff}
-  footer .brand small{color:#8FA0B2}
+  footer .brand .env-fold{stroke:#fff}
   footer .ftag{margin:16px 0 22px;color:#C6D0DA;max-width:44ch;font-size:15px}
   footer .fnav{display:flex;gap:22px;flex-wrap:wrap;margin:0 0 26px;color:#DCE4EC;font-weight:600;font-size:14px}
   footer .credits{font-size:12px;color:#7C8A98;line-height:1.8;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
@@ -215,7 +217,11 @@
   }
   @media(max-width:760px){
     .menu{display:none}
-    .brand small{display:none}
+    .nav{gap:10px}
+    .brand{font-size:18px;gap:9px}
+    .brand .mark{width:32px;height:32px}
+    .brand .mark svg{width:21px}
+    .head-right{gap:10px}
     .gb-grid,.ban-grid,.why-points{grid-template-columns:1fr}
     .ban-grid{gap:0}
     section{padding:60px 0}
@@ -235,9 +241,9 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="brand">
-      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/></svg></span>
-      <span>고향봉투<small>GOHYANG</small></span>
+    <a href="#top" class="brand" aria-label="고향봉투 홈">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.3" y="8.6" width="17.4" height="11.4" rx="2.2" stroke="currentColor" stroke-width="1.7"/><path d="M3.7 9.3L12 3.3L20.3 9.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path class="env-fold" d="M4.2 9.9L12 14.6L19.8 9.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>고향봉투</span>
     </a>
     <div class="head-right">
       <nav class="menu">
@@ -259,7 +265,7 @@
           <option value="ne">नेपाली</option>
           <option value="km">ខ្មែរ</option>
           <option value="vi">Tiếng Việt</option>
-          <option value="id">Bahasa Indonesia</option>
+          <option value="id">Indonesia</option>
           <option value="fil">Filipino</option>
           <option value="en">English</option>
           <option value="ko">한국어</option>
@@ -310,7 +316,7 @@
         <div class="wp"><div class="n">01</div><h3 class="t-h3" data-i18n="why.p1.t">모으면 단가가 내려갑니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p1.d">열 개를 한 번에 실으면 한 개당 운송비가 낮아집니다.</p></div>
         <div class="wp"><div class="n">02</div><h3 class="t-h3" data-i18n="why.p2.t">세금과는 무관합니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p2.d">각 소포는 본인 개인통관부호로 정상 가격을 신고하는 정식 통관입니다. 나눠 보내거나 숨기지 않습니다.</p></div>
         <div class="wp"><div class="n">03</div><h3 class="t-h3" data-i18n="why.p3.t">정식 파트너가 운송합니다</h3><p class="t-body" style="font-size:14.5px" data-i18n="why.p3.d">통관과 배송은 정식 등록된 국제특송사·관세법인이 맡습니다.</p></div>
-        <div class="wp" style="border-top-color:transparent;padding-top:0;display:flex;align-items:center">
+        <div class="wp" style="border-top-color:var(--color-border)">
           <p class="t-caption" data-i18n="why.p4.d">정확한 요율은 단일 공단 파일럿에서 실측해 확정·공개합니다.</p>
         </div>
       </div>
@@ -609,8 +615,8 @@
 <footer>
   <div class="wrap">
     <div class="brand" style="color:#fff">
-      <span class="mark" style="background:var(--color-accentStrong)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/></svg></span>
-      <span>고향봉투<small>GOHYANG</small></span>
+      <span class="mark" style="background:var(--color-accentStrong)"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.3" y="8.6" width="17.4" height="11.4" rx="2.2" stroke="currentColor" stroke-width="1.7"/><path d="M3.7 9.3L12 3.3L20.3 9.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path class="env-fold" d="M4.2 9.9L12 14.6L19.8 9.9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>고향봉투</span>
     </div>
     <p class="ftag" data-i18n="foot.tag">한국에서 고향으로, 함께 보내는 국제소포</p>
     <div class="fnav">
