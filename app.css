@@ -212,8 +212,8 @@ body.modal-open{overflow:hidden}
 .order-item{display:flex;align-items:center;gap:13px;padding:16px 2px;border-bottom:1px solid var(--color-border);width:100%;text-align:left;background:transparent;font-family:var(--font-sans);cursor:pointer}
 .order-item .ofl{font-size:24px;flex:none}
 .order-item .omain{flex:1;min-width:0}
-.order-item .ono{font-variant-numeric:tabular-nums;font-weight:800;color:var(--color-ink);font-size:14px;letter-spacing:.02em}
-.order-item .oroute{font-size:12.5px;color:var(--color-muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.order-item .ono{display:block;font-variant-numeric:tabular-nums;font-weight:800;color:var(--color-ink);font-size:14px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-item .oroute{display:block;font-size:12.5px;color:var(--color-muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .order-item .ostat{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--color-seed);background:var(--seed-50);border-radius:var(--radius-pill);padding:5px 11px;white-space:nowrap}
 .order-item .ostat .d{width:7px;height:7px;border-radius:50%;background:var(--color-seed)}
 .order-item .ochev{flex:none;color:var(--color-muted)}
