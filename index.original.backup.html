@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700;800&display=swap">
 <!-- 실제 지도: Leaflet + OpenStreetMap 래스터 타일(키·WebGL 불필요) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<link rel="stylesheet" href="app.css">
 <style>
   /* 언어별 폰트 — 한국어=Pretendard, 나머지=Noto(문자별 커버리지) */
   html[lang="ne"] body, html[lang="ne"] .t-display, html[lang="ne"] .t-h1, html[lang="ne"] .t-h2, html[lang="ne"] .t-h3, html[lang="ne"] .t-button, html[lang="ne"] .btn{font-family:'Noto Sans Devanagari','Noto Sans',sans-serif}
@@ -247,12 +246,7 @@
         <a href="#track" data-i18n="nav.track">배송추적</a>
         <a href="#safe" data-i18n="nav.safe">안전결제</a>
         <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
-        <a href="#" data-action="myorders" data-i18n="nav.myorders">내 주문</a>
       </nav>
-      <button class="acct-btn" id="acctBtn" data-action="account" aria-label="로그인 / 내 정보">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>
-        <span class="who" id="acctWho">로그인</span>
-      </button>
       <div class="langwrap">
         <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg>
         <select id="langsel" aria-label="언어 선택 / Choose language">
@@ -277,7 +271,7 @@
     <h1 class="t-display" data-i18n="hero.title">함께 모아 보내면,<br>고향으로 가는 배송비가 내려갑니다.</h1>
     <p class="t-lead" data-i18n="hero.sub">같은 공단, 같은 나라로 가는 소포를 한데 모아 한 번에 보냅니다. 여럿이 모일수록 상자 한 개당 배송비가 낮아집니다.</p>
     <div class="cta">
-      <a href="#how" class="btn btn-white btn-lg js-send" data-action="send"><span class="t-button" style="color:var(--color-seed)" data-i18n="hero.cta1">소포 보내기</span></a>
+      <a href="#how" class="btn btn-white btn-lg"><span class="t-button" style="color:var(--color-seed)" data-i18n="hero.cta1">소포 보내기</span></a>
       <a href="#gonggu" class="btn btn-ghost btn-lg"><span class="t-button" style="color:#fff" data-i18n="hero.cta2">진행 중인 공동구매</span></a>
     </div>
 
@@ -338,7 +332,7 @@
     </div>
     <div class="gb-grid">
       <!-- card 1 -->
-      <div class="gb" data-country="np" data-batch-id="np-hyangnam">
+      <div class="gb" data-country="np">
         <div class="gb-top">
           <div><div class="route"><span class="flag">🇳🇵</span> <span data-i18n="card1.route">화성 향남공단 → 카트만두</span></div><div class="dest" data-i18n="gb.destNp">네팔행 · 표준소포 합배송</div></div>
           <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="52">--</div></div>
@@ -347,10 +341,10 @@
           <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>46kg</b> / 60kg · 12<span data-i18n="gb.peopleUnit">명</span></span></div>
           <div class="bar"><i style="width:77%"></i></div>
         </div>
-        <a href="#how" class="btn btn-primary js-join" data-action="join"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
       </div>
       <!-- card 2 -->
-      <div class="gb" data-country="kh" data-batch-id="kh-wongok">
+      <div class="gb" data-country="kh">
         <div class="gb-top">
           <div><div class="route"><span class="flag">🇰🇭</span> <span data-i18n="card2.route">안산 원곡동 → 프놈펜</span></div><div class="dest" data-i18n="gb.destKh">캄보디아행 · 표준소포 합배송</div></div>
           <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="99">--</div></div>
@@ -359,10 +353,10 @@
           <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>31kg</b> / 60kg · 8<span data-i18n="gb.peopleUnit">명</span></span></div>
           <div class="bar"><i style="width:52%"></i></div>
         </div>
-        <a href="#how" class="btn btn-primary js-join" data-action="join"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
       </div>
       <!-- card 3 -->
-      <div class="gb" data-country="np" data-batch-id="np-gimhae">
+      <div class="gb" data-country="np">
         <div class="gb-top">
           <div><div class="route"><span class="flag">🇳🇵</span> <span data-i18n="card3.route">김해 → 카트만두</span></div><div class="dest" data-i18n="gb.destNp">네팔행 · 표준소포 합배송</div></div>
           <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="20">--</div><div class="soon" data-i18n="gb.closing">마감 임박</div></div>
@@ -371,10 +365,10 @@
           <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>58kg</b> / 60kg · 17<span data-i18n="gb.peopleUnit">명</span></span></div>
           <div class="bar"><i style="width:96%"></i></div>
         </div>
-        <a href="#how" class="btn btn-primary js-join" data-action="join"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
       </div>
       <!-- card 4 -->
-      <div class="gb" data-country="kh" data-batch-id="kh-jeongwang">
+      <div class="gb" data-country="kh">
         <div class="gb-top">
           <div><div class="route"><span class="flag">🇰🇭</span> <span data-i18n="card4.route">시흥 정왕동 → 프놈펜</span></div><div class="dest" data-i18n="gb.destKh">캄보디아행 · 표준소포 합배송</div></div>
           <div class="timer"><div class="lab" data-i18n="gb.deadline">마감까지</div><div class="clk" data-deadline="140">--</div></div>
@@ -383,7 +377,7 @@
           <div class="row"><span data-i18n="gb.gathered">모인 무게</span><span><b>19kg</b> / 60kg · 5<span data-i18n="gb.peopleUnit">명</span></span></div>
           <div class="bar"><i style="width:32%"></i></div>
         </div>
-        <a href="#how" class="btn btn-primary js-join" data-action="join"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
+        <a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="gb.join">함께 보내기</span></a>
       </div>
     </div>
   </div>
@@ -450,17 +444,18 @@
       <div class="t-eyebrow eyebrow-line" data-i18n="tr.eyebrow">배송추적</div>
       <h2 class="t-h2" data-i18n="tr.title">접수부터 집앞까지, 어디쯤인지 보입니다</h2>
     </div>
-    <form class="track-form" id="trackForm" autocomplete="off">
-      <label for="trackInput" class="sr-only" data-i18n="trk.formLabel" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">송장번호로 조회</label>
-      <input id="trackInput" name="tracking" type="text" inputmode="latin" placeholder="예: GH-2609-NP-04821" data-i18n-ph="trk.ph" aria-describedby="trackHint">
-      <button type="submit" class="btn btn-primary"><span class="t-button" data-i18n="trk.btn">조회하기</span></button>
-    </form>
-    <p class="track-hint" id="trackHint"><span data-i18n="trk.sampleLead">번호가 없으면 예시로 확인해 보세요:</span> <span class="samp" data-sample>GH-2609-NP-04821</span> · <span class="samp" data-sample>GH-2609-KH-01337</span></p>
-    <div class="track-alert" id="trackAlert" role="alert">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
-      <span data-i18n="trk.notFound">해당 번호의 소포를 찾을 수 없습니다. 번호를 다시 확인해 주세요. 내가 보낸 소포는 '내 주문'에서도 볼 수 있습니다.</span>
+    <div class="track-meta">
+      <span class="t-caption" data-i18n="tr.sample">예시 송장번호</span>
+      <span class="no">GH-2609-NP-04821</span>
     </div>
-    <div id="trackResult"></div>
+    <div class="track">
+      <div class="tnode done"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><div class="tt" data-i18n="t1">접수 완료</div><div class="ts" data-i18n="tr.status.done">완료</div></div>
+      <div class="tnode done"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><div class="tt" data-i18n="t2">거점 집하</div><div class="ts" data-i18n="tr.status.done">완료</div></div>
+      <div class="tnode now"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t3">정식 통관</div><div class="ts" data-i18n="tr.status.now">진행 중</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t4">항공 운송</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t5">목적국 도착</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+      <div class="tnode wait"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></div><div class="tt" data-i18n="t6">집앞 배송</div><div class="ts" data-i18n="tr.status.wait">대기</div></div>
+    </div>
   </div>
 </section>
 
@@ -517,7 +512,6 @@
       <h2 class="t-h2" data-i18n="ld.title">이웃의 공동구매를 돕고 보상받습니다</h2>
       <p class="t-body" data-i18n="ld.body">기숙사 통역, 식당, 종교 모임처럼 이웃이 모이는 곳의 믿을 만한 분이 공동구매를 돕습니다.</p>
       <div class="leader-rule" data-i18n="ld.rule">리더는 현금을 직접 걷지 않습니다. 모든 결제는 앱의 안전결제로만 이뤄집니다.</div>
-      <div class="leader-cta"><button class="btn btn-primary" data-action="leader"><span class="t-button" data-i18n="ld.applyBtn">동네 리더 신청하기</span></button></div>
     </div>
     <div class="es-diagram" style="background:var(--color-surface)">
       <svg viewBox="0 0 360 200" width="100%" role="img" aria-label="동네 리더가 여러 이웃의 공동구매를 하나의 거점으로 모으는 그림">
@@ -629,39 +623,7 @@
 </footer>
 
 <!-- 모바일 하단 CTA -->
-<div class="mobicta"><a href="#how" class="btn btn-primary js-send" data-action="send"><span class="t-button" data-i18n="hero.cta1">소포 보내기</span></a></div>
-
-<!-- ── 위저드(소포 보내기) 오버레이 ── -->
-<div class="overlay" id="wizardOverlay" aria-hidden="true">
-  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wizTitle">
-    <div class="sheet-head">
-      <div class="row">
-        <span class="htitle" id="wizTitle" data-i18n="wiz.title">소포 보내기</span>
-        <button class="sheet-close" data-action="close-wizard" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      </div>
-      <div class="stepbar" id="wizStepbar" aria-hidden="true"></div>
-      <div class="steplabel" id="wizStepLabel"></div>
-    </div>
-    <div class="sheet-body" id="wizBody"></div>
-    <div class="sheet-foot" id="wizFoot"></div>
-  </div>
-</div>
-
-<!-- ── 범용 패널(내 주문·로그인·리더·주문상세) ── -->
-<div class="overlay" id="panelOverlay" aria-hidden="true">
-  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
-    <div class="sheet-head">
-      <div class="row">
-        <span class="htitle" id="panelTitle"></span>
-        <button class="sheet-close" data-action="close-panel" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      </div>
-    </div>
-    <div class="sheet-body" id="panelBody"></div>
-  </div>
-</div>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<div class="mobicta"><a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="hero.cta1">소포 보내기</span></a></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ── 다국어 사전 — 코어 5(한국어 ko·영어 en·네팔어 ne·크메르어 km·베트남어 vi) + 인니 id·타갈로그 fil.
@@ -797,13 +759,9 @@ const I18N = {
  "foot.tag":{en:"Korea to home, shipped together",ne:"कोरियाबाट घरतिर, सँगै पठाउने पार्सल",km:"ពីកូរ៉េទៅផ្ទះ ផ្ញើជាមួយគ្នា",vi:"Từ Hàn Quốc về quê, gửi cùng nhau",id:"Dari Korea ke kampung, dikirim bersama",fil:"Mula Korea pauwi, sabay-sabay na padala"}
 };
 const SUPPORTED=["ko","en","ne","km","vi","id","fil"];
-/* 동적 생성 문자열용 번역 헬퍼 + 언어변경 훅(작동형 플로우가 사용) */
-window.__langHooks=[];
-function t(k){var r=I18N[k];if(!r)return k;var l=document.documentElement.lang||'ko';if(l==='ko')return (r.ko!==undefined?r.ko:(r.en!==undefined?r.en:k));return (r[l]!==undefined?r[l]:(r.en!==undefined?r.en:(r.ko!==undefined?r.ko:k)));}
 
 /* 한국어 원문 저장(되돌리기용) */
 document.querySelectorAll('[data-i18n]').forEach(el=>{el.dataset.ko=el.innerHTML;});
-document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.dataset.koPh=el.getAttribute('placeholder')||'';});
 function applyLang(lang){
  if(SUPPORTED.indexOf(lang)<0) lang="en";
  document.documentElement.lang=lang;
@@ -814,16 +772,8 @@ function applyLang(lang){
    const v=rec&&(rec[lang]!==undefined?rec[lang]:rec.en);
    el.innerHTML=(v!==undefined&&v!==null?v:el.dataset.ko);
  });
- document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-   const k=el.getAttribute('data-i18n-ph');
-   if(lang==="ko"){el.setAttribute('placeholder',el.dataset.koPh||'');return;}
-   const rec=I18N[k];
-   const v=rec&&(rec[lang]!==undefined?rec[lang]:rec.en);
-   el.setAttribute('placeholder',(v!==undefined&&v!==null?v:el.dataset.koPh||''));
- });
  const sel=document.getElementById('langsel'); if(sel) sel.value=lang;
  try{localStorage.setItem('gh_lang',lang);}catch(e){}
- try{(window.__langHooks||[]).forEach(function(fn){try{fn(lang);}catch(e){}});}catch(e){}
 }
 function detectLang(){
  try{var q=new URLSearchParams(location.search).get('lang'); if(q&&SUPPORTED.indexOf(q)>=0) return q;}catch(e){}
@@ -886,23 +836,19 @@ document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
      maxZoom:18, attribution:'© OpenStreetMap contributors'
    }).addTo(map);
    var b=[];
-   window.__hubMap=map; window.__hubMarkers={};
    hubs.forEach(function(h){
-     var mk=L.marker([h[0],h[1]],{icon:L.divIcon({className:'',html:'<div class="hubpin">'+h[2]+'</div>',iconSize:null})}).addTo(map);
-     window.__hubMarkers[h[2]]=mk;
+     L.marker([h[0],h[1]],{icon:L.divIcon({className:'',html:'<div class="hubpin">'+h[2]+'</div>',iconSize:null})}).addTo(map);
      b.push([h[0],h[1]]);
    });
    map.fitBounds(b,{padding:[50,50]});
-   if(typeof window.__bindHubPopups==='function'){try{window.__bindHubPopups();}catch(e){}}
  }catch(e){}
 })();
 
 /* ── 이미지 출처(CREDITS.json) ── */
 fetch('images/CREDITS.json').then(r=>r.json()).then(cs=>{
- const label=cs.map(c=>`${c.author} (${c.license})`).join(' · ');
- document.getElementById('credits').textContent='이미지 출처: '+label+' — via Wikimedia Commons';
+ const t=cs.map(c=>`${c.author} (${c.license})`).join(' · ');
+ document.getElementById('credits').textContent='이미지 출처: '+t+' — via Wikimedia Commons';
 }).catch(()=>{});
 </script>
-<script src="app.js"></script>
 </body>
 </html>
