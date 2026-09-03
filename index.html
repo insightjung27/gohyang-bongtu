@@ -579,7 +579,7 @@
       <h2 class="t-h2" data-i18n="ab.title">한국에 사는 이주 노동자와 고향을 잇습니다</h2>
       <p class="t-body" data-i18n="ab.body">고향봉투는 공동구매 국제소포 서비스를 준비하는 팀입니다. 통관·운송은 정식 등록 파트너가, 결제는 라이선스 PG가 맡습니다.</p>
       <div class="qr-band" style="margin-top:30px;justify-content:flex-start">
-        <div id="qrcode" aria-hidden="true"></div>
+        <div id="qrcode"><img src="images/qr.svg" alt="고향봉투 데모 페이지 QR" width="126" height="126"></div>
         <div>
           <h3 class="t-h3" data-i18n="qr.title">휴대폰으로 공유하기</h3>
           <p class="t-caption" style="margin-top:4px" data-i18n="qr.d">QR을 찍으면 이 페이지가 열립니다.</p>
@@ -622,8 +622,6 @@
 
 <!-- 모바일 하단 CTA -->
 <div class="mobicta"><a href="#how" class="btn btn-primary"><span class="t-button" data-i18n="hero.cta1">소포 보내기</span></a></div>
-
-<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708c9a0e57033c07f0e0b58a75e9270/qrcode.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ── 다국어 사전 — 코어 5(한국어 ko·영어 en·네팔어 ne·크메르어 km·베트남어 vi) + 인니 id·타갈로그 fil.
@@ -816,13 +814,7 @@ document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
  });
 }));
 
-/* ── 실제 QR (현재 페이지 URL) ── */
-(function(){
- try{
-   var url=location.href.split('#')[0];
-   if(window.QRCode){ new QRCode(document.getElementById('qrcode'),{text:url,width:126,height:126,colorDark:'#17324D',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M}); }
- }catch(e){}
-})();
+/* ── QR: images/qr.svg 정적 인라인(현재 페이지 URL 인코딩·자체포함·CDN 비의존) ── */
 
 /* ── 실제 지도(Leaflet + OSM 래스터) · 집하 거점 예시 마커 ── */
 (function(){
